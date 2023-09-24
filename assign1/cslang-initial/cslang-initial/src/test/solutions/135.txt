@@ -1,0 +1,1 @@
+using operate on string,^,Illegal Escape In String: this is a wrong string \a

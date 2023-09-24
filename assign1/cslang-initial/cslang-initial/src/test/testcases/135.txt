@@ -1,0 +1,1 @@
+"using operate on string" ^ "this is a wrong string \a \\try to write a comment
