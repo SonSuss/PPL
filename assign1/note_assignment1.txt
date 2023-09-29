@@ -1,4 +1,0 @@
-3.2 is not done
-3.3
-At identifiers are special which are only used for static members in a class. It begins with a at sign (@) and continues with a non-empty sequence of letters, underscores and digits.
-

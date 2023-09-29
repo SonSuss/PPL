@@ -1,0 +1,4 @@
+func main():  void {
+           var a: [10]int;
+        }
+        

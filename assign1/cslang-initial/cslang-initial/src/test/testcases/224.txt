@@ -1,0 +1,3 @@
+func r(): int {}
+        const f: string = "For fun";
+        

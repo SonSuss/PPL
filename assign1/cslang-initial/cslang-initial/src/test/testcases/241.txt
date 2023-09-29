@@ -1,0 +1,4 @@
+func main():  void {
+           var a: [5+5]int;
+        }
+        

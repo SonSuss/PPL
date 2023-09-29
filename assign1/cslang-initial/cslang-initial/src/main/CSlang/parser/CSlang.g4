@@ -12,84 +12,75 @@ options{
 program: gb* EOF ;
 
 
-gb: class_lst | menthod_lst |statement_lst;
+gb: class_lst | method_lst | static_attribute_decl;
+
+static_attribute_decl: CONST ( attribute_init_nom ) SEMICOLON ;
 
 class_lst: class_dcl+;
-class_dcl: CLASS ID (SUPER_CLASS ID)? class_body ;
-class_body: LBRASE ( menthod_dcl | statement_lst)* RBRASE;
+class_dcl: CLASS (ID SUPER_CLASS)? ID class_body ;
+class_body: LBRASE ( method_dcl | statements |constructor_decl)* RBRASE;
 
-
-menthod_lst: menthod_dcl+;
-menthod_dcl: FUNC ID LPAREN param_lst RPAREN COLON typ menthod_body ;
-constructor_decl: FUNC CONSTRUCTOR LPAREN param_lst RPAREN menthod_body ;
-menthod_body: LBRASE statement_lst* RBRASE;
+method_lst: method_dcl+;
+method_dcl: FUNC ID LPAREN param_lst RPAREN COLON typ block_state ;
+constructor_decl: FUNC CONSTRUCTOR LPAREN param_lst RPAREN block_state ;
 param_lst: param (COMMA param)* | ;
-param: idlist COLON typ ;
-
-
-expr_lst: expr (COMMA expr_lst)* |;
-expr: expr STRING_CONCAT expr | expr1;
-expr1: expr1 relational expr1 | expr2 ;
-expr2: expr2 logical_bin expr3 | expr3;
-expr3: expr3 adding expr4 | expr4 ;
-expr4: expr4 multiplying expr5 | expr5;
-expr5: expr6 logical_not expr5 | expr6;
-expr6: MINUS expr7 | expr7;
-expr7: expr7 LBRACK expr_lst RBRACK | expr8;
-expr8: expr8 DOT ID | expr9;
-expr9: NEW ID expr_lst | expr10;
-expr10: static_access|  index_op | LPAREN expr RPAREN | ARRAY | LITERAL | SELF;
+param: id_lst COLON typ;
 
 
 multiplying: MULTIPLY| DIVIDE_F | DIVIDE_I | DIVIDE_I_L;
 adding: PLUS | MINUS;
 logical_bin: AND | OR ;
 logical_not: NOT;
-relational: relat_bool relat_int_float;
+relational: relat_bool | relat_int_float;
 relat_bool:EQUAL | NOT_EQUAL;
-relat_int_float: LESS|LESS_EQUAL|GREATER_EQUAL|GREATER ;
+relat_int_float: LESS | LESS_EQUAL|GREATER_EQUAL|GREATER ;
 
+expr_lst: expr (COMMA expr_lst)* | ;
+expr: expr STRING_CONCAT expr | expr1;
+expr1: expr1 relational expr1 | expr2 ;
+expr2: expr2 logical_bin expr3 | expr3;
+expr3: expr3 adding expr4 | expr4 ;
+expr4: expr4 multiplying expr5 | expr5;
+expr5: expr6 logical_not expr5 | expr6;
+expr6: MINUS expr6 | expr7;
+expr7: expr7 LBRACK expr7 RBRACK | expr8;
+expr8: expr8 DOT expr9 | expr8 COMMA expr9 (LPAREN expr_lst RPAREN) |  expr9;
+expr9: ID DOT ID | (ID DOT)? ID (LPAREN expr_lst RPAREN) | expr10; 
+expr10: NEW ID (LPAREN expr_lst RPAREN) | expr11;
+expr11: LPAREN expr RPAREN | literal | SELF | ID ;
 
-statement_lst: statements+ ;
-statements: decl_state 
-    | if_state 
-    | for_state 
-    | continue_state 
-    | menthod_invo_state 
-    | return_state 
+statements: attribute_decl
+    | assign_decl
+    | if_state
+    | for_state
     | break_state
+    | continue_state
+    | return_state  
+    | instance_method_invo_access
+    | static_method_invo_access
     | io_st;
-decl_state: fm? (assign | decl_typ | decl_array) ;
-assign: assign_form SEMICOLON;
-assign_form: lhs ASSIGN expr ;
-decl_typ: lhs COLON typ ( INITIAL expr )? SEMICOLON;
-decl_array: lhs COLON LBRACK INT RBRACK SEMICOLON;
-if_state: IF block_state? expr if_block (ELSE if_block)? ;
-for_state: FOR assign_form SEMICOLON expr SEMICOLON assign_form block_state;
+
+assign_decl: attribute_assign SEMICOLON ;
+attribute_assign:  (lhs COMMA attribute_assign COMMA expr | lhs ASSIGN expr  );
+
+attribute_decl: fm ( attribute_init_nom | attribute_init_typ ) SEMICOLON ;
+attribute_init_nom:  ID COMMA attribute_init_nom COMMA expr | ID COLON typ INITIAL expr ;
+attribute_init_typ:  id_lst COLON array_element_typ? typ;
+array_element_typ: LBRACK INT_LITERAL RBRACK;
+
+
+if_state: IF block_state? expr block_state (ELSE block_state)? ;
+for_state: FOR attribute_decl SEMICOLON expr SEMICOLON attribute_decl block_state;
 break_state: BREAK SEMICOLON ;
 continue_state: CONTINUE SEMICOLON ;
 return_state: RETURN expr SEMICOLON ;
-block_state: LPAREN statement_lst RPAREN ;
-if_block: LBRASE statement_lst RBRASE;
-menthod_invo_state: (expr DOT)? ID LPAREN expr_lst RPAREN SEMICOLON ; 
-lhs:  idlist
-    | access_lst
-    ;
-access_lst: access (COMMA access)*; 
-access: instance_access 
-    | static_access
-    | instance_menthod_invo_access
-    | 
-;
-static_access: (ID DOT)? ID ;
-instance_access: expr DOT ID;
-instance_menthod_invo_access: expr DOT ID LPAREN expr_lst RPAREN ;  
-static_menthod_invo_access: (ID DOT)? ID LPAREN expr_lst RPAREN ;
+instance_method_invo_access: expr8 SEMICOLON;  
+static_method_invo_access: expr9 SEMICOLON;
+block_state: LBRASE statements* RBRASE ;
 
-idlist: identifier (COMMA identifier)*;
-index_op: ID LBRACK expr RBRACK; //a[1]
-identifier: ID | index_op ;
-
+lhs: ID | index_op;
+index_op: ID LBRACK expr RBRACK;
+id_lst:ID (COMMA ID)* ;
 
 io_st: 'io.' io SEMICOLON;
 io: '@readInt()'
@@ -101,11 +92,12 @@ io: '@readInt()'
     | '@readString()'
     | '@writeString'LPAREN  expr RPAREN
 ;
+
 fm: VAR | CONST;
 
 /*TYPE */
 boolean: NOT | AND | OR | EQUAL | NOT_EQUAL ;
-typ: INT| FLOAT| BOOL |STRING | VOID;
+typ: INT| FLOAT| BOOL |STRING | VOID | ID | ARRAY;
 
 
 
@@ -137,6 +129,7 @@ VOID: 'void' ;
 CONST: 'const' ;
 CONSTANT: 'constant' ;
 FUNC: 'func';
+ARRAY:'array' ;
 
 /*  operaters */
 NOT: '!';
@@ -174,14 +167,13 @@ RBRASE: '}';
 
 
 /*LITERAL */
-
-LITERAL:  INT_LITERAL | FLOAT_LITERAL | BOOL_LITERAL |STRING_LITERAL ;
-ID: '@'?[_a-zA-Z][_a-zA-Z0-9]*;
+literal:  INT_LITERAL | FLOAT_LITERAL | BOOL_LITERAL |STRING_LITERAL | array ;
+STRING_LITERAL: '"' (ESC_SEQ | ~[\r\n"])* '"' {self.text = self.text[1:-1]};
+ID: '@'?[_a-zA-Z][_a-zA-Z0-9]* ;
 FLOAT_LITERAL: DIGIT+ (DECIMAL | EXPONENT | DECIMAL EXPONENT);
-INT_LITERAL: DIGIT+;
+INT_LITERAL: DIGIT+;    
 BOOL_LITERAL: TRUE | FALSE;
-STRING_LITERAL: '"' (ESC_SEQ | ~[\r\n"])* '"' {self.text=self.text[1:-1]};
-ARRAY: LBRACK ' '* LITERAL ' '* (COMMA ' '* LITERAL ' '*)* RBRACK ;
+array: LBRACK  literal  (COMMA  literal )* RBRACK ;
 
 
 fragment SIGN: PLUS | MINUS;

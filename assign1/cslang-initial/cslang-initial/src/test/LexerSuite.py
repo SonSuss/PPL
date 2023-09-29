@@ -122,34 +122,35 @@ class LexerSuite(unittest.TestCase):
         self.assertTrue(TestLexer.test("::=:==",":,:=,:=,=,<EOF>" , 140)) 
     def test_40(self):
         """test separator"""
-        self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 141))
-    # def test_41(self):
-    #     """test linecomment"""
-    #     self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 121))
-    # def test_42(self):
-    #     """test linecomment"""
-    #     self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 121))
-    # def test_43(self):
-    #     """test linecomment"""
-    #     self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 121))
-    # def test_44(self):
-    #     """test linecomment"""
-    #     self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 121))
-    # def test_45(self):
-    #     """test linecomment"""
-    #     self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 121))
-    # def test_46(self):
-    #     """test linecomment"""
-    #     self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 121))
-    # def test_47(self):
-    #     """test linecomment"""
-    #     self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 121))
-    # def test_48(self):
-    #     """test linecomment"""
-    #     self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 121))
-    # def test_49(self):
-    #     """test linecomment"""
-    #     self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 121))
+        self.assertTrue(TestLexer.test("{{][]}}", "{,{,],[,],},},<EOF>", 141))
+    def test_41(self):
+        """test linecomment"""
+        
+        self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 142))
+    def test_42(self):
+        """test linecomment"""
+        self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 143))
+    def test_43(self):
+        """test linecomment"""
+        self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 144))
+    def test_44(self):
+        """test linecomment"""
+        self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 145))
+    def test_45(self):
+        """test linecomment"""
+        self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 146))
+    def test_46(self):
+        """test linecomment"""
+        self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 147))
+    def test_47(self):
+        """test linecomment"""
+        self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 148))
+    def test_48(self):
+        """test linecomment"""
+        self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 149))
+    def test_49(self):
+        """test linecomment"""
+        self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 150))
     # def test_50(self):
     #     """test linecomment"""
     #     self.assertTrue(TestLexer.test("//abcd\nabc", "abc,<EOF>", 121))

@@ -1,0 +1,4 @@
+func main(n:int , s: string): int {
+            foo(r);
+        }
+        

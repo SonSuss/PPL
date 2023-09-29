@@ -1,0 +1,19 @@
+
+    class RandomClass {
+        func constructor (num : int) {
+            number := num;
+        }
+
+        func getNumber():int {
+            return number;
+        }
+
+        func setNumber(num : int):void {
+            number := num;
+        }
+
+        func printNumber():void {
+        }
+        
+    };
+        

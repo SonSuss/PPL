@@ -1,0 +1,2 @@
+func r(): int {bedge = 1;}
+        
