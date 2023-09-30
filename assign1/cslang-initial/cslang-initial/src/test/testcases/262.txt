@@ -1,0 +1,5 @@
+class Program {
+        func main(): void {
+            if true {a := a + 1;}
+        }}
+        

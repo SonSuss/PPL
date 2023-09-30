@@ -14,16 +14,6 @@ class CSlangVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CSlangParser#gb.
-    def visitGb(self, ctx:CSlangParser.GbContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CSlangParser#static_attribute_decl.
-    def visitStatic_attribute_decl(self, ctx:CSlangParser.Static_attribute_declContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by CSlangParser#class_lst.
     def visitClass_lst(self, ctx:CSlangParser.Class_lstContext):
         return self.visitChildren(ctx)
@@ -96,6 +86,11 @@ class CSlangVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by CSlangParser#relat_int_float.
     def visitRelat_int_float(self, ctx:CSlangParser.Relat_int_floatContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CSlangParser#relational_expr.
+    def visitRelational_expr(self, ctx:CSlangParser.Relational_exprContext):
         return self.visitChildren(ctx)
 
 
@@ -254,6 +249,11 @@ class CSlangVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by CSlangParser#id_access.
+    def visitId_access(self, ctx:CSlangParser.Id_accessContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by CSlangParser#io_st.
     def visitIo_st(self, ctx:CSlangParser.Io_stContext):
         return self.visitChildren(ctx)
@@ -269,18 +269,23 @@ class CSlangVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CSlangParser#boolean.
-    def visitBoolean(self, ctx:CSlangParser.BooleanContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by CSlangParser#typ.
     def visitTyp(self, ctx:CSlangParser.TypContext):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by CSlangParser#attri_type.
+    def visitAttri_type(self, ctx:CSlangParser.Attri_typeContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by CSlangParser#literal.
     def visitLiteral(self, ctx:CSlangParser.LiteralContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CSlangParser#bool_literal.
+    def visitBool_literal(self, ctx:CSlangParser.Bool_literalContext):
         return self.visitChildren(ctx)
 
 

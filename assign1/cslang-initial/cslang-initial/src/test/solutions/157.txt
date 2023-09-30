@@ -1,0 +1,1 @@
+class,Program,{,func,double,(,lst,:,int,),:,int,{,if,@len,(,lst,),==,0,{,return,null,;,},var,i,:,int,=,lst,[,0,],;,return,(,[,a,],+,self,.,double,(,lst,[,12,],),),;,},},<EOF>

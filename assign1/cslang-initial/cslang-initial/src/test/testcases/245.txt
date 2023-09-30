@@ -1,6 +1,6 @@
-func main():  void {
+class Program {func main():  void {
             var n :int = 5;
             var a :[n]A;
             var c : string = "why the var is the wrong one when I put n in to the BRACKET!";
-        }
+        }}
         

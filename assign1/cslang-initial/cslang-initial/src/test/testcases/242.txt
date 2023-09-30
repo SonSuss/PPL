@@ -1,4 +1,4 @@
-func main():  void {
-        var a: [n]int;
+class Program {func main():  void {
+        var a: [n]int;}
         }
         

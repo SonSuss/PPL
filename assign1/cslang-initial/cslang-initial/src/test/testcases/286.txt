@@ -1,0 +1,17 @@
+class Program {
+            func thieuDusk (n: niga): void {
+            @text := @text + nian;
+            for i:=0; i<@thieuSuzu(); i:=i+1 {
+                //comment 1
+                if {@x := 0;} _test > i
+                {
+                    _test := _test - @_;
+                }
+                else
+                {
+                    @_ := @_ + 1;
+                }
+            }
+            }}
+
+        

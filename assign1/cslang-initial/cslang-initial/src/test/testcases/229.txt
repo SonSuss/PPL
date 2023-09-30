@@ -1,3 +1,3 @@
-
-            func main(n: int, s: string, const f: float) {}
+class Program {
+            func main(n: int, s: string, const f: float) {}}
         

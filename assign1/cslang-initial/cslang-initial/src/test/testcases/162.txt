@@ -1,0 +1,6 @@
+class Program {
+        func main(): void {
+            if true {a := a + 1;}
+            else {a := a - 1;}
+        }}
+        

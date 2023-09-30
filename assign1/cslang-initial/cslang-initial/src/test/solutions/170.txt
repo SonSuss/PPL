@@ -1,0 +1,1 @@
+class,Program,{,func,main,(,),:,void,{,for,a,:=,1,;,10,;,a,:=,i,+,2,{,io.,@writeInt,(,i,),;,},},},<EOF>

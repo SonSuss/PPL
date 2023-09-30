@@ -1,0 +1,6 @@
+class Program {
+        func @main(): void {
+            var a : [5]float;
+            a[44 && 5 + 1] := ["DF",1,2];
+        }}
+        

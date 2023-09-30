@@ -1,1 +1,1 @@
-1,bc,<EOF>
+class,Program,{,func,jowd,(,),:,string,{,if,true,{,a,[,5,],:=,a,[,1,],+,2,;,b,[,9,],:=,b,[,5,],||,false,;,},else,;,},},<EOF>

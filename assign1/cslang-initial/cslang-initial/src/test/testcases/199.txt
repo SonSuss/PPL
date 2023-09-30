@@ -1,0 +1,26 @@
+class Program {
+        func railfence(plain: string, key: integer): string {
+            if key <= 1
+                {return plain;}
+            var matrix: [15] string; // 15 is the maximum number of rows
+            var row, dir: int = 0, -1;
+
+            for i := 0; i < @length(plain); i:=i + 1 {
+                if (j == key - 1) || (j == 0)
+                    {dir := dir * -1;}
+                matrix[j] := plain[i];
+                if dir == 1
+                    {j := j + 1;}
+                else
+                    {j := j - 1;}
+            }
+
+            var ciphertext : string;
+            for i := 0; i < key; i:=i + 1 {
+                ciphertext := ciphertext.matrix[i];
+            }
+            return ciphertext;
+        }
+        }
+
+        

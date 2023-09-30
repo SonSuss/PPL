@@ -1,0 +1,7 @@
+class Program <- test{
+            var x: int = 65;
+            func @fact(n: int):void {
+                (new X("sd"^"w")).haha()[2]:=(new X("sd"^"w")).haha()[2];
+            }
+        }
+        

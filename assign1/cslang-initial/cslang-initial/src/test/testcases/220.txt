@@ -1,4 +1,4 @@
-func main(n: int, s: string): money int {
+class Program {func main(n: int, s: string): money int {
             return s[n];
-        }
+        }}
         

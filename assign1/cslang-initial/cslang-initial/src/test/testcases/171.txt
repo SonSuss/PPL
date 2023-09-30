@@ -1,0 +1,8 @@
+class Program {
+        func main(): void {
+            var a: [2] int;
+            for index := 0; index < 10; index:= index + 1 {
+                if a[index] == i
+                   { break ; }
+        }}}
+        

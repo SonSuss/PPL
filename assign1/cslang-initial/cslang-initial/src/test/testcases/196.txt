@@ -1,0 +1,5 @@
+class toidaudon <- Program, Nworld{
+                func @main():void{
+                x.b[2] := x.m()[3];}
+            }
+        

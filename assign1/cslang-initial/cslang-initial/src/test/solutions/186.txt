@@ -1,0 +1,1 @@
+class,Program,{,var,a,:,[,2,],int,=,[,2,,,why not,],;,func,main,(,),:,void,{,var,test,:,int,=,1,;,return,test,;,},},<EOF>

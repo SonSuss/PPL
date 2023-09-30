@@ -1,0 +1,1 @@
+class,Program,{,var,a,:,[,2,],int,=,[,2,,,why not,],;,func,@main,(,),:,void,{,a,[,a,[,2,],],:=,[,2,,,3,],;,},},class,toidaudon,<-,Program,{,func,@main,(,),:,void,{,x,.,b,[,2,],:=,x,.,m,(,),[,3,],;,},},<EOF>

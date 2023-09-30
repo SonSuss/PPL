@@ -1,4 +1,4 @@
-
+class Program {
     a: float = 3.;
-    func main(): void {}
+    func main(): void {}}
         

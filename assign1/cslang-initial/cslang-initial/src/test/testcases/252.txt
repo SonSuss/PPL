@@ -1,0 +1,4 @@
+class Program <- test{
+            var tepm:string = "string";
+        }
+        

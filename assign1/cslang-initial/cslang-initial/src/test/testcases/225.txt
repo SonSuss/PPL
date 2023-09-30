@@ -1,2 +1,2 @@
-func r(): int {bedge = 1;}
+class Program {func r(): int {bedge = 1;}}
         

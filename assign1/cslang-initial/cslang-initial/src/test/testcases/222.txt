@@ -1,4 +1,4 @@
-func main(n:int , s: string): int {
-            foo(r);
-        }
+class Program {func main(n:int , s: string): int {
+            @foo(r);
+        }}
         

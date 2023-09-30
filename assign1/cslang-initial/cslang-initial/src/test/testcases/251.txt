@@ -1,0 +1,6 @@
+class Program <- test{
+            var a : [12]int;
+            func @fact(n: bool):void {
+                a[3] :=1;
+            }
+        }

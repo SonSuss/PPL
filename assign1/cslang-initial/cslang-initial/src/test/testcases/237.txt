@@ -1,5 +1,5 @@
-func main():  void {
+class Program {func main():  void {
             const x, y: int = 2, 3;
-        }
+        }}
 
         

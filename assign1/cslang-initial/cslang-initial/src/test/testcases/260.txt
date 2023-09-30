@@ -1,0 +1,5 @@
+class Program {const a: int = 4;
+        func main(): void {
+            a := true || false && true;
+        }}
+        
