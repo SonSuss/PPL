@@ -81,7 +81,7 @@ block_state: LBRASE statements* RBRASE ;
 lhs:  index_op | id_access;
 index_op: expr LBRACK expr RBRACK ;
 id_lst:id_access (COMMA id_access)* ;
-id_access:ID |AT_ID;
+id_access: ID |AT_ID;
 
 io_st: 'io.' io SEMICOLON;
 io: '@readInt()'

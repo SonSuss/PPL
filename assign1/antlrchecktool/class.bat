@@ -1,1 +1,0 @@
-SET ANTLR_JAR=.; %ANTLR_JAR%
