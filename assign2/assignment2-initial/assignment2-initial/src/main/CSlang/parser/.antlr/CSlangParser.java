@@ -1,4 +1,4 @@
-// Generated from e:/hocbaidcm/PPL/assignment/assign1/cslang-initial/cslang-initial/src/main/CSlang/parser/CSlang.g4 by ANTLR 4.13.1
+// Generated from e:/hocbaidcm/PPL/assignment/assign2/assignment2-initial/assignment2-initial/src/main/CSlang/parser/CSlang.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;

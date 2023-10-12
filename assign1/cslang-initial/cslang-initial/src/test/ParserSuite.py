@@ -442,7 +442,7 @@ class ParserSuite(unittest.TestCase):
             }
         }
         """
-        expect = "successful"
+        expect = "Error on line 2 col 25: ;"
         self.assertTrue(TestParser.test(input, expect, 246))
     def test_simple_program_46(self):
         """simple test"""

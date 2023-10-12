@@ -9,11 +9,9 @@ options{
 	language=Python3;
 }
 
-program: class_lst* EOF ;
+program: class_dcl* EOF ;
 
 
-
-class_lst: class_dcl+;
 class_dcl: CLASS (ID SUPER_CLASS)? ID LBRASE class_body* RBRASE;
 class_body:  (method_lst|attribute_decl|constructor_decl);
 
@@ -32,9 +30,10 @@ relational: relat_bool | relat_int_float;
 relat_bool:EQUAL | NOT_EQUAL;
 relat_int_float: LESS | LESS_EQUAL|GREATER_EQUAL|GREATER ;
 
-relational_expr:expr (relational|logical_bin) expr | bool_literal | ID;
+relational_expr0:relational_expr0 logical_bin relational_expr |relational_expr ;
+relational_expr:expr relational expr | bool_literal | ID;
 
-expr_lst: expr (COMMA expr_lst)*;
+expr_lst: (expr (COMMA expr_lst)*)?;
 expr: expr STRING_CONCAT expr | expr1;
 expr1: expr1 relational expr1 | expr2 ;
 expr2: expr2 logical_bin expr3 | expr3;
@@ -43,9 +42,9 @@ expr4: expr4 multiplying expr5 | expr5;
 expr5: logical_not expr6 | expr6;
 expr6: MINUS expr6 | expr7;
 expr7: expr7 LBRACK expr7 RBRACK | expr8;
-expr8: expr8 DOT ID | expr8 DOT ID (LPAREN expr_lst? RPAREN) |  expr9;
-expr9: (ID DOT)? AT_ID | (ID DOT)? AT_ID (LPAREN expr_lst? RPAREN) | expr10; 
-expr10: NEW ID (LPAREN expr_lst? RPAREN) | expr11;
+expr8: expr8 DOT ID | expr8 DOT ID (LPAREN expr_lst RPAREN) |  expr9;
+expr9: (ID DOT)? AT_ID | (ID DOT)? AT_ID (LPAREN expr_lst RPAREN) | expr10; 
+expr10: NEW ID LPAREN expr_lst RPAREN | expr11;
 expr11: LPAREN expr RPAREN | literal | SELF | ID | NULL ;
 
 statements: attribute_decl
@@ -55,51 +54,50 @@ statements: attribute_decl
     | break_state
     | continue_state
     | return_state  
-    | instance_method_invo_access
-    | static_method_invo_access
-    | io_st;
+    | call_state;
 
 assign_decl: attribute_assign SEMICOLON ;
 attribute_assign:  lhs ASSIGN expr  ;
 
-attribute_decl: fm ( attribute_init_nom | attribute_init_typ ) SEMICOLON ;
-attribute_init_nom:  id_access COMMA attribute_init_nom COMMA expr | id_access COLON array_element_typ? attri_type INITIAL expr ;
-attribute_init_typ:  id_lst COLON array_element_typ? attri_type;
-array_element_typ: LBRACK NON_ZERO_INT RBRACK;
+attribute_decl:  (variable_decl | constraint_decl) SEMICOLON ;
+variable_decl: VAR (non_inital_decl | inital_decl) ;
+constraint_decl: CONST inital_decl ;
+non_inital_decl: id_lst COLON (attri_type | array_type);
+inital_decl: id_access COLON (attri_type | array_type) INITIAL expr | id_access COMMA inital_decl COMMA expr;
+array_type:  LBRACK NON_ZERO_INT RBRACK attri_type ;
 
-
-if_state: IF block_state? relational_expr block_state (ELSE block_state)? ;
-for_state: FOR attribute_assign SEMICOLON relational_expr SEMICOLON attribute_assign block_state;
+if_state: IF block_state? expr block_state (ELSE block_state)? ;
+for_state: FOR attribute_assign SEMICOLON relational_expr0 SEMICOLON attribute_assign block_state;
 break_state: BREAK SEMICOLON ;
 continue_state: CONTINUE SEMICOLON ;
 return_state: RETURN expr SEMICOLON ;
-instance_method_invo_access: expr8 SEMICOLON;  
-static_method_invo_access: expr9 SEMICOLON;
+call_state: instance_method_invo_access | static_method_invo_access | io_st;
+instance_method_invo_access:  expr DOT ID (LPAREN expr_lst RPAREN)  SEMICOLON;  
+static_method_invo_access:  (ID DOT)? AT_ID (LPAREN expr_lst RPAREN) SEMICOLON;
 block_state: LBRASE statements* RBRASE ;
 
 
 lhs:  index_op | id_access;
 index_op: expr LBRACK expr RBRACK ;
 id_lst:id_access (COMMA id_access)* ;
-id_access: ID |AT_ID;
+id_access:ID |AT_ID;
 
-io_st: 'io.' io SEMICOLON;
-io: '@readInt()'
-    | '@writeInt' LPAREN expr RPAREN
-    | '@readFloat()'
-    | '@writeFloat'LPAREN expr RPAREN
-    | '@readBool()'
-    | '@writeBool'LPAREN  expr RPAREN
-    | '@readString()'
-    | '@writeString'LPAREN  expr RPAREN
+io_st: expr DOT io_mt LPAREN expr? RPAREN SEMICOLON;
+io_mt: '@readInt'
+    | '@writeInt'
+    | '@readFloat'
+    | '@writeFloat'
+    | '@readBool'
+    | '@writeBool'
+    | '@readString'
+    | '@writeString'
 ;
 
-fm: VAR | CONST;
 
 
 /*TYPE */
-typ: INT| FLOAT| BOOL |STRING | VOID | ID | ARRAY;
-attri_type:INT| FLOAT| BOOL |STRING  | ID | ARRAY;
+typ: INT| FLOAT| BOOL |STRING | VOID | ID ;
+attri_type: INT| FLOAT| BOOL |STRING | ID ;
 
 
 
@@ -131,7 +129,6 @@ VOID: 'void' ;
 CONST: 'const' ;
 CONSTANT: 'constant' ;
 FUNC: 'func';
-ARRAY:'array' ;
 
 /*  operaters */
 NOT: '!';

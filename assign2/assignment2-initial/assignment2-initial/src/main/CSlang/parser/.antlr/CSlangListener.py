@@ -1,4 +1,4 @@
-# Generated from e:/hocbaidcm/PPL/assignment/assign1/cslang-initial/cslang-initial/src/main/CSlang/parser/CSlang.g4 by ANTLR 4.13.1
+# Generated from e:/hocbaidcm/PPL/assignment/assign2/assignment2-initial/assignment2-initial/src/main/CSlang/parser/CSlang.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .CSlangParser import CSlangParser
