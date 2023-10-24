@@ -1,0 +1,3 @@
+class main {
+            var a:string = ("temp"^"temp")[2];
+        }

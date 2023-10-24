@@ -1,0 +1,6 @@
+class Program {
+             func main(): void{
+                 var a,b : [5]int = [1],[2];
+             }
+             }
+        

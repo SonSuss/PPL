@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(main),[MethodDecl(Id(constructor),[],VoidType,Block([If(BooleanLit(True),Block([If(BooleanLit(False),Block([Return(IntLit(1))]))]))]))])])

@@ -442,7 +442,7 @@ class ParserSuite(unittest.TestCase):
             }
         }
         """
-        expect = "Error on line 2 col 25: ;"
+        expect = "successful"
         self.assertTrue(TestParser.test(input, expect, 246))
     def test_simple_program_46(self):
         """simple test"""
@@ -529,10 +529,10 @@ class ParserSuite(unittest.TestCase):
     def test_simple_program_53(self):
         """simple test"""
         input = """class Program {
-            func @main():int {
-                @isSth := !a.x[1] && b [2];
-            }
-        }
+             func main(): int{
+                a := x.m()[3];
+             }
+             }
         """
         expect = "successful"
         self.assertTrue(TestParser.test(input, expect, 254))
@@ -1114,7 +1114,7 @@ class ParserSuite(unittest.TestCase):
     def test_simple_program_missing_one(self):
         """simple test"""
         input = """class Program {
-        func jowd(): string {
+        func jowd(a:int): string {
             if true  {
                 a[5] := a[1] + 2;
                 b[9] := b[5] || false;

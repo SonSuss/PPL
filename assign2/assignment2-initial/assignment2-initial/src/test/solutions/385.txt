@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(main),[AttributeDecl(VarDecl(Id(a),StringType,ArrayCell(NewExpr(Id(Shape),[]),IntLit(2))))])])

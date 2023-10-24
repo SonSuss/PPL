@@ -1,0 +1,6 @@
+class main {
+            func test():void{}
+            func @io():int{
+                return 1;
+            }
+        }

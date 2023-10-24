@@ -1,0 +1,5 @@
+class main {
+            func test():void{
+                @getArea(Shape.check());
+            }
+        }

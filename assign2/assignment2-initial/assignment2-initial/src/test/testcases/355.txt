@@ -1,0 +1,6 @@
+class Program {
+             func main(): int{
+                io.@writeInt(1+2);
+             }
+             }
+        

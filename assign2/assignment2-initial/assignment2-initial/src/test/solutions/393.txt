@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(main),[MethodDecl(Id(constructor),[],VoidType,Block([VarDecl(Id(a),StringType,StringLit(hi)),For(AssignStmt(Id(i),IntLit(1)),BooleanLit(False),AssignStmt(Id(j),BooleanLit(True)),Block([Call(Id(@t),[])])])]))])])

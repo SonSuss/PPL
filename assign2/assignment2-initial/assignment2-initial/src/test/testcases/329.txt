@@ -1,0 +1,6 @@
+class Program {
+             func main(): int{
+                a := d.c.b.a(1,2).b ;
+             }
+             }
+        

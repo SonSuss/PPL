@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(main),[AttributeDecl(ConstDecl(Id(a),ClassType(Id(Shape)),NewExpr(Id(Shape),[IntLit(2)]))),MethodDecl(Id(test),[],VoidType,Block([]))])])

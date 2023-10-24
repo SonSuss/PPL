@@ -1,0 +1,8 @@
+class main {
+            func constructor(){
+                var a:string = "hi";
+                for i:=1;false;j:=true{
+                    @t();
+                }
+            }
+        }

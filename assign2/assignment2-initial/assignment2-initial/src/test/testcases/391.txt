@@ -1,0 +1,9 @@
+class main {
+            func constructor(){
+                for i:=1;false;i:=2{
+                    if false{
+                        return i+j;
+                    }
+                }
+            }
+        }

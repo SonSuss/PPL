@@ -1,0 +1,4 @@
+class main {
+            func test():void{}
+            func constructor(){}
+        }

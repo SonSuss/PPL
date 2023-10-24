@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(main),[MethodDecl(Id(test),[],VoidType,Block([Call(Id(@getArea),[CallExpr(Id(Shape),Id(check),[])])]))])])

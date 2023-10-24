@@ -1,0 +1,9 @@
+class main {
+            func constructor(){
+                if true{
+                    if false{
+                        return 1;
+                    }
+                }
+            }
+        }

@@ -35,15 +35,6 @@ class CSlangListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#method_lst.
-    def enterMethod_lst(self, ctx:CSlangParser.Method_lstContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#method_lst.
-    def exitMethod_lst(self, ctx:CSlangParser.Method_lstContext):
-        pass
-
-
     # Enter a parse tree produced by CSlangParser#method_dcl.
     def enterMethod_dcl(self, ctx:CSlangParser.Method_dclContext):
         pass
@@ -80,75 +71,219 @@ class CSlangListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#multiplying.
-    def enterMultiplying(self, ctx:CSlangParser.MultiplyingContext):
+    # Enter a parse tree produced by CSlangParser#statements.
+    def enterStatements(self, ctx:CSlangParser.StatementsContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#multiplying.
-    def exitMultiplying(self, ctx:CSlangParser.MultiplyingContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#adding.
-    def enterAdding(self, ctx:CSlangParser.AddingContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#adding.
-    def exitAdding(self, ctx:CSlangParser.AddingContext):
+    # Exit a parse tree produced by CSlangParser#statements.
+    def exitStatements(self, ctx:CSlangParser.StatementsContext):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#logical_bin.
-    def enterLogical_bin(self, ctx:CSlangParser.Logical_binContext):
+    # Enter a parse tree produced by CSlangParser#storedecl.
+    def enterStoredecl(self, ctx:CSlangParser.StoredeclContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#logical_bin.
-    def exitLogical_bin(self, ctx:CSlangParser.Logical_binContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#logical_not.
-    def enterLogical_not(self, ctx:CSlangParser.Logical_notContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#logical_not.
-    def exitLogical_not(self, ctx:CSlangParser.Logical_notContext):
+    # Exit a parse tree produced by CSlangParser#storedecl.
+    def exitStoredecl(self, ctx:CSlangParser.StoredeclContext):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#relational.
-    def enterRelational(self, ctx:CSlangParser.RelationalContext):
+    # Enter a parse tree produced by CSlangParser#constdecl.
+    def enterConstdecl(self, ctx:CSlangParser.ConstdeclContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#relational.
-    def exitRelational(self, ctx:CSlangParser.RelationalContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#relat_bool.
-    def enterRelat_bool(self, ctx:CSlangParser.Relat_boolContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#relat_bool.
-    def exitRelat_bool(self, ctx:CSlangParser.Relat_boolContext):
+    # Exit a parse tree produced by CSlangParser#constdecl.
+    def exitConstdecl(self, ctx:CSlangParser.ConstdeclContext):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#relat_int_float.
-    def enterRelat_int_float(self, ctx:CSlangParser.Relat_int_floatContext):
+    # Enter a parse tree produced by CSlangParser#vardecl.
+    def enterVardecl(self, ctx:CSlangParser.VardeclContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#relat_int_float.
-    def exitRelat_int_float(self, ctx:CSlangParser.Relat_int_floatContext):
+    # Exit a parse tree produced by CSlangParser#vardecl.
+    def exitVardecl(self, ctx:CSlangParser.VardeclContext):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#relational_expr.
-    def enterRelational_expr(self, ctx:CSlangParser.Relational_exprContext):
+    # Enter a parse tree produced by CSlangParser#non_inital_decl.
+    def enterNon_inital_decl(self, ctx:CSlangParser.Non_inital_declContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#relational_expr.
-    def exitRelational_expr(self, ctx:CSlangParser.Relational_exprContext):
+    # Exit a parse tree produced by CSlangParser#non_inital_decl.
+    def exitNon_inital_decl(self, ctx:CSlangParser.Non_inital_declContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#inital_decl.
+    def enterInital_decl(self, ctx:CSlangParser.Inital_declContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#inital_decl.
+    def exitInital_decl(self, ctx:CSlangParser.Inital_declContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#assigndecl.
+    def enterAssigndecl(self, ctx:CSlangParser.AssigndeclContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#assigndecl.
+    def exitAssigndecl(self, ctx:CSlangParser.AssigndeclContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#assign.
+    def enterAssign(self, ctx:CSlangParser.AssignContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#assign.
+    def exitAssign(self, ctx:CSlangParser.AssignContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#ifstmt.
+    def enterIfstmt(self, ctx:CSlangParser.IfstmtContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#ifstmt.
+    def exitIfstmt(self, ctx:CSlangParser.IfstmtContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#forstmt.
+    def enterForstmt(self, ctx:CSlangParser.ForstmtContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#forstmt.
+    def exitForstmt(self, ctx:CSlangParser.ForstmtContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#continue_state.
+    def enterContinue_state(self, ctx:CSlangParser.Continue_stateContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#continue_state.
+    def exitContinue_state(self, ctx:CSlangParser.Continue_stateContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#return_state.
+    def enterReturn_state(self, ctx:CSlangParser.Return_stateContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#return_state.
+    def exitReturn_state(self, ctx:CSlangParser.Return_stateContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#break_state.
+    def enterBreak_state(self, ctx:CSlangParser.Break_stateContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#break_state.
+    def exitBreak_state(self, ctx:CSlangParser.Break_stateContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#callstmt.
+    def enterCallstmt(self, ctx:CSlangParser.CallstmtContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#callstmt.
+    def exitCallstmt(self, ctx:CSlangParser.CallstmtContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#instance_method_invo_access.
+    def enterInstance_method_invo_access(self, ctx:CSlangParser.Instance_method_invo_accessContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#instance_method_invo_access.
+    def exitInstance_method_invo_access(self, ctx:CSlangParser.Instance_method_invo_accessContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#static_method_invo_access.
+    def enterStatic_method_invo_access(self, ctx:CSlangParser.Static_method_invo_accessContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#static_method_invo_access.
+    def exitStatic_method_invo_access(self, ctx:CSlangParser.Static_method_invo_accessContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#io_st.
+    def enterIo_st(self, ctx:CSlangParser.Io_stContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#io_st.
+    def exitIo_st(self, ctx:CSlangParser.Io_stContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#block.
+    def enterBlock(self, ctx:CSlangParser.BlockContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#block.
+    def exitBlock(self, ctx:CSlangParser.BlockContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#io_mt.
+    def enterIo_mt(self, ctx:CSlangParser.Io_mtContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#io_mt.
+    def exitIo_mt(self, ctx:CSlangParser.Io_mtContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#lhs.
+    def enterLhs(self, ctx:CSlangParser.LhsContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#lhs.
+    def exitLhs(self, ctx:CSlangParser.LhsContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#arraycell.
+    def enterArraycell(self, ctx:CSlangParser.ArraycellContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#arraycell.
+    def exitArraycell(self, ctx:CSlangParser.ArraycellContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#fieldaccess.
+    def enterFieldaccess(self, ctx:CSlangParser.FieldaccessContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#fieldaccess.
+    def exitFieldaccess(self, ctx:CSlangParser.FieldaccessContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#idlst.
+    def enterIdlst(self, ctx:CSlangParser.IdlstContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#idlst.
+    def exitIdlst(self, ctx:CSlangParser.IdlstContext):
+        pass
+
+
+    # Enter a parse tree produced by CSlangParser#iden.
+    def enterIden(self, ctx:CSlangParser.IdenContext):
+        pass
+
+    # Exit a parse tree produced by CSlangParser#iden.
+    def exitIden(self, ctx:CSlangParser.IdenContext):
         pass
 
 
@@ -269,219 +404,66 @@ class CSlangListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#statements.
-    def enterStatements(self, ctx:CSlangParser.StatementsContext):
+    # Enter a parse tree produced by CSlangParser#relational.
+    def enterRelational(self, ctx:CSlangParser.RelationalContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#statements.
-    def exitStatements(self, ctx:CSlangParser.StatementsContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#assign_decl.
-    def enterAssign_decl(self, ctx:CSlangParser.Assign_declContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#assign_decl.
-    def exitAssign_decl(self, ctx:CSlangParser.Assign_declContext):
+    # Exit a parse tree produced by CSlangParser#relational.
+    def exitRelational(self, ctx:CSlangParser.RelationalContext):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#attribute_assign.
-    def enterAttribute_assign(self, ctx:CSlangParser.Attribute_assignContext):
+    # Enter a parse tree produced by CSlangParser#relat_bool.
+    def enterRelat_bool(self, ctx:CSlangParser.Relat_boolContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#attribute_assign.
-    def exitAttribute_assign(self, ctx:CSlangParser.Attribute_assignContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#attribute_decl.
-    def enterAttribute_decl(self, ctx:CSlangParser.Attribute_declContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#attribute_decl.
-    def exitAttribute_decl(self, ctx:CSlangParser.Attribute_declContext):
+    # Exit a parse tree produced by CSlangParser#relat_bool.
+    def exitRelat_bool(self, ctx:CSlangParser.Relat_boolContext):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#variable_decl.
-    def enterVariable_decl(self, ctx:CSlangParser.Variable_declContext):
+    # Enter a parse tree produced by CSlangParser#relat_int_float.
+    def enterRelat_int_float(self, ctx:CSlangParser.Relat_int_floatContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#variable_decl.
-    def exitVariable_decl(self, ctx:CSlangParser.Variable_declContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#constraint_decl.
-    def enterConstraint_decl(self, ctx:CSlangParser.Constraint_declContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#constraint_decl.
-    def exitConstraint_decl(self, ctx:CSlangParser.Constraint_declContext):
+    # Exit a parse tree produced by CSlangParser#relat_int_float.
+    def exitRelat_int_float(self, ctx:CSlangParser.Relat_int_floatContext):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#non_inital_decl.
-    def enterNon_inital_decl(self, ctx:CSlangParser.Non_inital_declContext):
+    # Enter a parse tree produced by CSlangParser#multiplying.
+    def enterMultiplying(self, ctx:CSlangParser.MultiplyingContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#non_inital_decl.
-    def exitNon_inital_decl(self, ctx:CSlangParser.Non_inital_declContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#inital_decl.
-    def enterInital_decl(self, ctx:CSlangParser.Inital_declContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#inital_decl.
-    def exitInital_decl(self, ctx:CSlangParser.Inital_declContext):
+    # Exit a parse tree produced by CSlangParser#multiplying.
+    def exitMultiplying(self, ctx:CSlangParser.MultiplyingContext):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#array_type.
-    def enterArray_type(self, ctx:CSlangParser.Array_typeContext):
+    # Enter a parse tree produced by CSlangParser#adding.
+    def enterAdding(self, ctx:CSlangParser.AddingContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#array_type.
-    def exitArray_type(self, ctx:CSlangParser.Array_typeContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#if_state.
-    def enterIf_state(self, ctx:CSlangParser.If_stateContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#if_state.
-    def exitIf_state(self, ctx:CSlangParser.If_stateContext):
+    # Exit a parse tree produced by CSlangParser#adding.
+    def exitAdding(self, ctx:CSlangParser.AddingContext):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#for_state.
-    def enterFor_state(self, ctx:CSlangParser.For_stateContext):
+    # Enter a parse tree produced by CSlangParser#logical_bin.
+    def enterLogical_bin(self, ctx:CSlangParser.Logical_binContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#for_state.
-    def exitFor_state(self, ctx:CSlangParser.For_stateContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#break_state.
-    def enterBreak_state(self, ctx:CSlangParser.Break_stateContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#break_state.
-    def exitBreak_state(self, ctx:CSlangParser.Break_stateContext):
+    # Exit a parse tree produced by CSlangParser#logical_bin.
+    def exitLogical_bin(self, ctx:CSlangParser.Logical_binContext):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#continue_state.
-    def enterContinue_state(self, ctx:CSlangParser.Continue_stateContext):
+    # Enter a parse tree produced by CSlangParser#logical_not.
+    def enterLogical_not(self, ctx:CSlangParser.Logical_notContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#continue_state.
-    def exitContinue_state(self, ctx:CSlangParser.Continue_stateContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#return_state.
-    def enterReturn_state(self, ctx:CSlangParser.Return_stateContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#return_state.
-    def exitReturn_state(self, ctx:CSlangParser.Return_stateContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#call_state.
-    def enterCall_state(self, ctx:CSlangParser.Call_stateContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#call_state.
-    def exitCall_state(self, ctx:CSlangParser.Call_stateContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#instance_method_invo_access.
-    def enterInstance_method_invo_access(self, ctx:CSlangParser.Instance_method_invo_accessContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#instance_method_invo_access.
-    def exitInstance_method_invo_access(self, ctx:CSlangParser.Instance_method_invo_accessContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#static_method_invo_access.
-    def enterStatic_method_invo_access(self, ctx:CSlangParser.Static_method_invo_accessContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#static_method_invo_access.
-    def exitStatic_method_invo_access(self, ctx:CSlangParser.Static_method_invo_accessContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#block_state.
-    def enterBlock_state(self, ctx:CSlangParser.Block_stateContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#block_state.
-    def exitBlock_state(self, ctx:CSlangParser.Block_stateContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#lhs.
-    def enterLhs(self, ctx:CSlangParser.LhsContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#lhs.
-    def exitLhs(self, ctx:CSlangParser.LhsContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#index_op.
-    def enterIndex_op(self, ctx:CSlangParser.Index_opContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#index_op.
-    def exitIndex_op(self, ctx:CSlangParser.Index_opContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#id_lst.
-    def enterId_lst(self, ctx:CSlangParser.Id_lstContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#id_lst.
-    def exitId_lst(self, ctx:CSlangParser.Id_lstContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#id_access.
-    def enterId_access(self, ctx:CSlangParser.Id_accessContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#id_access.
-    def exitId_access(self, ctx:CSlangParser.Id_accessContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#io_st.
-    def enterIo_st(self, ctx:CSlangParser.Io_stContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#io_st.
-    def exitIo_st(self, ctx:CSlangParser.Io_stContext):
-        pass
-
-
-    # Enter a parse tree produced by CSlangParser#io_mt.
-    def enterIo_mt(self, ctx:CSlangParser.Io_mtContext):
-        pass
-
-    # Exit a parse tree produced by CSlangParser#io_mt.
-    def exitIo_mt(self, ctx:CSlangParser.Io_mtContext):
+    # Exit a parse tree produced by CSlangParser#logical_not.
+    def exitLogical_not(self, ctx:CSlangParser.Logical_notContext):
         pass
 
 
@@ -494,12 +476,12 @@ class CSlangListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CSlangParser#attri_type.
-    def enterAttri_type(self, ctx:CSlangParser.Attri_typeContext):
+    # Enter a parse tree produced by CSlangParser#array_type.
+    def enterArray_type(self, ctx:CSlangParser.Array_typeContext):
         pass
 
-    # Exit a parse tree produced by CSlangParser#attri_type.
-    def exitAttri_type(self, ctx:CSlangParser.Attri_typeContext):
+    # Exit a parse tree produced by CSlangParser#array_type.
+    def exitArray_type(self, ctx:CSlangParser.Array_typeContext):
         pass
 
 

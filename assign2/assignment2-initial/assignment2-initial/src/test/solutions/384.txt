@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(main),[AttributeDecl(VarDecl(Id(a),StringType,CallExpr(Id(@a),[IntLit(2),IntLit(5),IntLit(6)])))])])

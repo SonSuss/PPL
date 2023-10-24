@@ -1,1 +1,5 @@
-program
+class Program {
+             func main(): int{
+                self.aPI := 3.14;
+             }
+             }

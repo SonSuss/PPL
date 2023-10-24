@@ -1,0 +1,5 @@
+class vardecl {
+            var a,b,c:int;
+            var d:float;
+        }
+        

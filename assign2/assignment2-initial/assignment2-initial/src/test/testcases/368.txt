@@ -1,0 +1,6 @@
+class Program {
+             func main(): int{
+                for a:=0 ; a <1 ; a:=a+1 {}
+             }
+             }
+        

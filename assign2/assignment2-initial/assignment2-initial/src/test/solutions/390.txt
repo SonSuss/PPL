@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(main),[AttributeDecl(ConstDecl(Id(a),ClassType(Id(Temp)),BinaryOp(+,BinaryOp(*,IntLit(5),IntLit(2)),IntLit(1))))])])

@@ -1,0 +1,5 @@
+class main {
+            func test():void{
+                a:=new X().a[2].t[5+2];
+            }
+        }

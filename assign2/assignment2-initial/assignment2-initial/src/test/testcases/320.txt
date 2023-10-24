@@ -1,0 +1,7 @@
+class Program {
+             func main(): int{
+                var a : [5]int = b;
+                const a : string = 10;
+             }
+             }
+        

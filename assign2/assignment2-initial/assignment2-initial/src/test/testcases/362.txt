@@ -1,0 +1,6 @@
+class Program {
+             func main(): int{
+                a[1].a().b[2] := 2;
+             }
+             }
+        

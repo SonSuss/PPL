@@ -1,0 +1,4 @@
+class main {
+            func @test(a, b:int,t:[5]string):void{
+            }
+        }

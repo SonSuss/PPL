@@ -1,0 +1,4 @@
+class main{
+            const a:int;
+        }
+        
