@@ -46,7 +46,7 @@ class ASTGeneration(CSlangVisitor):
     def visitParam(self, ctx:CSlangParser.ParamContext):
         if ctx.idlst():
             return [VarDecl(a,ctx.getChild(2).accept(self),None) for a in ctx.getChild(0).accept(self)]
-        return [VarDecl(Id(ctx.getChild(0).getText()),ctx.getChild(2).accept(self),None)]
+        return [VarDecl(ctx.getChild(0).accept(self),ctx.getChild(2).accept(self),None)]
 
 
     # Visit a parse tree produced by CSlangParser#statements.
@@ -123,15 +123,13 @@ class ASTGeneration(CSlangVisitor):
 
     # Visit a parse tree produced by CSlangParser#ifstmt.
     def visitIfstmt(self, ctx:CSlangParser.IfstmtContext):
-        match ctx.getChildCount():
-            case 3:
-                return [If(ctx.getChild(1).accept(self),ctx.getChild(2).accept(self),None,None)]
-            case 4:
-                return [If(ctx.getChild(2).accept(self),ctx.getChild(3).accept(self),ctx.getChild(1).accept(self),None)]
-            case 5:
-                return [If(ctx.getChild(1).accept(self),ctx.getChild(2).accept(self),None,ctx.getChild(4).accept(self))]
-            case 6:
-                return [If(ctx.getChild(2).accept(self),ctx.getChild(3).accept(self),ctx.getChild(1).accept(self),ctx.getChild(5).accept(self))]
+        if ctx.getChildCount() ==3:
+            return [If(ctx.getChild(1).accept(self),ctx.getChild(2).accept(self),None,None)]
+        if ctx.getChildCount() ==4:
+            return [If(ctx.getChild(2).accept(self),ctx.getChild(3).accept(self),ctx.getChild(1).accept(self),None)]
+        if ctx.getChildCount() ==5:   
+            return [If(ctx.getChild(1).accept(self),ctx.getChild(2).accept(self),None,ctx.getChild(4).accept(self))]
+        return [If(ctx.getChild(2).accept(self),ctx.getChild(3).accept(self),ctx.getChild(1).accept(self),ctx.getChild(5).accept(self))]
 
     # Visit a parse tree produced by CSlangParser#forstmt.
     def visitForstmt(self, ctx:CSlangParser.ForstmtContext):
