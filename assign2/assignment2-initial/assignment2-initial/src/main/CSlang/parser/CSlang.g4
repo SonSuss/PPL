@@ -122,7 +122,6 @@ SELF: 'self' ;
 NEW: 'new' ;
 VOID: 'void' ;
 CONST: 'const' ;
-CONSTANT: 'constant' ;
 FUNC: 'func';
 
 /*  operaters */
