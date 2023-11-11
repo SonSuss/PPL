@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(a),[]),ClassDecl(Id(Program),[VarDecl(Id(@main),IntType)])])

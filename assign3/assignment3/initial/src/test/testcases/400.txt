@@ -1,1 +1,1 @@
-class a {} class b {} class a {}
+Program([ClassDecl(Id(a),[]),ClassDecl(Id(Program),[MethodDecl(Id(@main),[],VoidType,Block([]))]),ClassDecl(Id(a),[])])
