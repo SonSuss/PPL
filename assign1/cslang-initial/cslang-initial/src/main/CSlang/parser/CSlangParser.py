@@ -12,7 +12,7 @@ else:
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3I")
-        buf.write("\u0220\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\u021c\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
         buf.write("\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31")
@@ -52,36 +52,36 @@ def serializedATN():
         buf.write("\f%\16%\u019d\13%\3&\3&\3&\3&\3&\3&\3&\7&\u01a6\n&\f&")
         buf.write("\16&\u01a9\13&\3\'\3\'\3\'\3\'\5\'\u01af\n\'\3(\3(\3(")
         buf.write("\5(\u01b4\n(\3)\3)\3)\3)\3)\3)\5)\u01bc\n)\3*\3*\3*\3")
-        buf.write("*\3*\3*\3*\3*\3*\3*\3*\3*\3*\7*\u01cb\n*\f*\16*\u01ce")
-        buf.write("\13*\3+\3+\5+\u01d2\n+\3+\3+\3+\5+\u01d7\n+\3+\3+\3+\3")
-        buf.write("+\3+\3+\5+\u01df\n+\3,\3,\3,\3,\3,\3,\3,\5,\u01e8\n,\3")
-        buf.write("-\3-\3-\3-\3-\3-\5-\u01f0\n-\3.\3.\5.\u01f4\n.\3/\3/\3")
-        buf.write("\60\3\60\3\61\3\61\3\62\3\62\3\63\3\63\3\64\3\64\3\65")
-        buf.write("\3\65\3\66\3\66\3\66\3\66\3\66\3\67\3\67\3\67\3\67\3\67")
-        buf.write("\3\67\3\67\3\67\5\67\u0211\n\67\38\38\39\39\39\39\79\u0219")
-        buf.write("\n9\f9\169\u021c\139\39\39\39\2\6FHJR:\2\4\6\b\n\f\16")
-        buf.write("\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDF")
-        buf.write("HJLNPRTVXZ\\^`bdfhjlnp\2\n\4\2@@BB\3\2&\'\3\2(+\3\2\60")
-        buf.write("\63\3\2./\3\2$%\4\2\24\27BB\3\2\22\23\2\u022b\2u\3\2\2")
-        buf.write("\2\4z\3\2\2\2\6\u008c\3\2\2\2\b\u008e\3\2\2\2\n\u009a")
-        buf.write("\3\2\2\2\f\u00ae\3\2\2\2\16\u00b0\3\2\2\2\20\u00bc\3\2")
-        buf.write("\2\2\22\u00c0\3\2\2\2\24\u00c4\3\2\2\2\26\u00c9\3\2\2")
-        buf.write("\2\30\u00ce\3\2\2\2\32\u00e3\3\2\2\2\34\u00e5\3\2\2\2")
-        buf.write("\36\u00e8\3\2\2\2 \u00ec\3\2\2\2\"\u00f6\3\2\2\2$\u00fe")
-        buf.write("\3\2\2\2&\u0101\3\2\2\2(\u0105\3\2\2\2*\u010b\3\2\2\2")
-        buf.write(",\u010f\3\2\2\2.\u0118\3\2\2\2\60\u011f\3\2\2\2\62\u0123")
-        buf.write("\3\2\2\2\64\u014c\3\2\2\2\66\u0151\3\2\2\28\u0153\3\2")
-        buf.write("\2\2:\u0161\3\2\2\2<\u0163\3\2\2\2>\u016b\3\2\2\2@\u0176")
-        buf.write("\3\2\2\2B\u017d\3\2\2\2D\u0184\3\2\2\2F\u0186\3\2\2\2")
-        buf.write("H\u0192\3\2\2\2J\u019e\3\2\2\2L\u01ae\3\2\2\2N\u01b3\3")
-        buf.write("\2\2\2P\u01bb\3\2\2\2R\u01bd\3\2\2\2T\u01de\3\2\2\2V\u01e7")
-        buf.write("\3\2\2\2X\u01ef\3\2\2\2Z\u01f3\3\2\2\2\\\u01f5\3\2\2\2")
-        buf.write("^\u01f7\3\2\2\2`\u01f9\3\2\2\2b\u01fb\3\2\2\2d\u01fd\3")
-        buf.write("\2\2\2f\u01ff\3\2\2\2h\u0201\3\2\2\2j\u0203\3\2\2\2l\u0210")
-        buf.write("\3\2\2\2n\u0212\3\2\2\2p\u0214\3\2\2\2rt\5\4\3\2sr\3\2")
-        buf.write("\2\2tw\3\2\2\2us\3\2\2\2uv\3\2\2\2vx\3\2\2\2wu\3\2\2\2")
-        buf.write("xy\7\2\2\3y\3\3\2\2\2z}\7\32\2\2{|\7B\2\2|~\7\64\2\2}")
-        buf.write("{\3\2\2\2}~\3\2\2\2~\177\3\2\2\2\177\u0080\7B\2\2\u0080")
+        buf.write("*\3*\3*\3*\3*\3*\3*\5*\u01c8\n*\7*\u01ca\n*\f*\16*\u01cd")
+        buf.write("\13*\3+\3+\5+\u01d1\n+\3+\3+\3+\3+\3+\5+\u01d8\n+\3+\5")
+        buf.write("+\u01db\n+\3,\3,\3,\3,\3,\3,\3,\5,\u01e4\n,\3-\3-\3-\3")
+        buf.write("-\3-\3-\5-\u01ec\n-\3.\3.\5.\u01f0\n.\3/\3/\3\60\3\60")
+        buf.write("\3\61\3\61\3\62\3\62\3\63\3\63\3\64\3\64\3\65\3\65\3\66")
+        buf.write("\3\66\3\66\3\66\3\66\3\67\3\67\3\67\3\67\3\67\3\67\3\67")
+        buf.write("\3\67\5\67\u020d\n\67\38\38\39\39\39\39\79\u0215\n9\f")
+        buf.write("9\169\u0218\139\39\39\39\2\6FHJR:\2\4\6\b\n\f\16\20\22")
+        buf.write("\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPR")
+        buf.write("TVXZ\\^`bdfhjlnp\2\n\4\2@@BB\3\2&\'\3\2(+\3\2\60\63\3")
+        buf.write("\2./\3\2$%\4\2\24\27BB\3\2\22\23\2\u0226\2u\3\2\2\2\4")
+        buf.write("z\3\2\2\2\6\u008c\3\2\2\2\b\u008e\3\2\2\2\n\u009a\3\2")
+        buf.write("\2\2\f\u00ae\3\2\2\2\16\u00b0\3\2\2\2\20\u00bc\3\2\2\2")
+        buf.write("\22\u00c0\3\2\2\2\24\u00c4\3\2\2\2\26\u00c9\3\2\2\2\30")
+        buf.write("\u00ce\3\2\2\2\32\u00e3\3\2\2\2\34\u00e5\3\2\2\2\36\u00e8")
+        buf.write("\3\2\2\2 \u00ec\3\2\2\2\"\u00f6\3\2\2\2$\u00fe\3\2\2\2")
+        buf.write("&\u0101\3\2\2\2(\u0105\3\2\2\2*\u010b\3\2\2\2,\u010f\3")
+        buf.write("\2\2\2.\u0118\3\2\2\2\60\u011f\3\2\2\2\62\u0123\3\2\2")
+        buf.write("\2\64\u014c\3\2\2\2\66\u0151\3\2\2\28\u0153\3\2\2\2:\u0161")
+        buf.write("\3\2\2\2<\u0163\3\2\2\2>\u016b\3\2\2\2@\u0176\3\2\2\2")
+        buf.write("B\u017d\3\2\2\2D\u0184\3\2\2\2F\u0186\3\2\2\2H\u0192\3")
+        buf.write("\2\2\2J\u019e\3\2\2\2L\u01ae\3\2\2\2N\u01b3\3\2\2\2P\u01bb")
+        buf.write("\3\2\2\2R\u01bd\3\2\2\2T\u01da\3\2\2\2V\u01e3\3\2\2\2")
+        buf.write("X\u01eb\3\2\2\2Z\u01ef\3\2\2\2\\\u01f1\3\2\2\2^\u01f3")
+        buf.write("\3\2\2\2`\u01f5\3\2\2\2b\u01f7\3\2\2\2d\u01f9\3\2\2\2")
+        buf.write("f\u01fb\3\2\2\2h\u01fd\3\2\2\2j\u01ff\3\2\2\2l\u020c\3")
+        buf.write("\2\2\2n\u020e\3\2\2\2p\u0210\3\2\2\2rt\5\4\3\2sr\3\2\2")
+        buf.write("\2tw\3\2\2\2us\3\2\2\2uv\3\2\2\2vx\3\2\2\2wu\3\2\2\2x")
+        buf.write("y\7\2\2\3y\3\3\2\2\2z}\7\32\2\2{|\7B\2\2|~\7\64\2\2}{")
+        buf.write("\3\2\2\2}~\3\2\2\2~\177\3\2\2\2\177\u0080\7B\2\2\u0080")
         buf.write("\u0084\7>\2\2\u0081\u0083\5\6\4\2\u0082\u0081\3\2\2\2")
         buf.write("\u0083\u0086\3\2\2\2\u0084\u0082\3\2\2\2\u0084\u0085\3")
         buf.write("\2\2\2\u0085\u0087\3\2\2\2\u0086\u0084\3\2\2\2\u0087\u0088")
@@ -211,51 +211,49 @@ def serializedATN():
         buf.write("\u01b7\7<\2\2\u01b7\u01b8\5B\"\2\u01b8\u01b9\7=\2\2\u01b9")
         buf.write("\u01bc\3\2\2\2\u01ba\u01bc\5R*\2\u01bb\u01b5\3\2\2\2\u01bb")
         buf.write("\u01ba\3\2\2\2\u01bcQ\3\2\2\2\u01bd\u01be\b*\1\2\u01be")
-        buf.write("\u01bf\5T+\2\u01bf\u01cc\3\2\2\2\u01c0\u01c1\f\5\2\2\u01c1")
-        buf.write("\u01c2\7\66\2\2\u01c2\u01cb\7B\2\2\u01c3\u01c4\f\4\2\2")
-        buf.write("\u01c4\u01c5\7\66\2\2\u01c5\u01c6\7B\2\2\u01c6\u01c7\7")
-        buf.write(";\2\2\u01c7\u01c8\5@!\2\u01c8\u01c9\7:\2\2\u01c9\u01cb")
-        buf.write("\3\2\2\2\u01ca\u01c0\3\2\2\2\u01ca\u01c3\3\2\2\2\u01cb")
-        buf.write("\u01ce\3\2\2\2\u01cc\u01ca\3\2\2\2\u01cc\u01cd\3\2\2\2")
-        buf.write("\u01cdS\3\2\2\2\u01ce\u01cc\3\2\2\2\u01cf\u01d0\7B\2\2")
-        buf.write("\u01d0\u01d2\7\66\2\2\u01d1\u01cf\3\2\2\2\u01d1\u01d2")
-        buf.write("\3\2\2\2\u01d2\u01d3\3\2\2\2\u01d3\u01df\7@\2\2\u01d4")
-        buf.write("\u01d5\7B\2\2\u01d5\u01d7\7\66\2\2\u01d6\u01d4\3\2\2\2")
-        buf.write("\u01d6\u01d7\3\2\2\2\u01d7\u01d8\3\2\2\2\u01d8\u01d9\7")
-        buf.write("@\2\2\u01d9\u01da\7;\2\2\u01da\u01db\5@!\2\u01db\u01dc")
-        buf.write("\7:\2\2\u01dc\u01df\3\2\2\2\u01dd\u01df\5V,\2\u01de\u01d1")
-        buf.write("\3\2\2\2\u01de\u01d6\3\2\2\2\u01de\u01dd\3\2\2\2\u01df")
-        buf.write("U\3\2\2\2\u01e0\u01e1\7\36\2\2\u01e1\u01e2\7B\2\2\u01e2")
-        buf.write("\u01e3\7;\2\2\u01e3\u01e4\5@!\2\u01e4\u01e5\7:\2\2\u01e5")
-        buf.write("\u01e8\3\2\2\2\u01e6\u01e8\5X-\2\u01e7\u01e0\3\2\2\2\u01e7")
-        buf.write("\u01e6\3\2\2\2\u01e8W\3\2\2\2\u01e9\u01ea\7;\2\2\u01ea")
-        buf.write("\u01eb\5B\"\2\u01eb\u01ec\7:\2\2\u01ec\u01f0\3\2\2\2\u01ed")
-        buf.write("\u01f0\5l\67\2\u01ee\u01f0\7B\2\2\u01ef\u01e9\3\2\2\2")
-        buf.write("\u01ef\u01ed\3\2\2\2\u01ef\u01ee\3\2\2\2\u01f0Y\3\2\2")
-        buf.write("\2\u01f1\u01f4\5\\/\2\u01f2\u01f4\5^\60\2\u01f3\u01f1")
-        buf.write("\3\2\2\2\u01f3\u01f2\3\2\2\2\u01f4[\3\2\2\2\u01f5\u01f6")
-        buf.write("\t\3\2\2\u01f6]\3\2\2\2\u01f7\u01f8\t\4\2\2\u01f8_\3\2")
-        buf.write("\2\2\u01f9\u01fa\t\5\2\2\u01faa\3\2\2\2\u01fb\u01fc\t")
-        buf.write("\6\2\2\u01fcc\3\2\2\2\u01fd\u01fe\t\7\2\2\u01fee\3\2\2")
-        buf.write("\2\u01ff\u0200\7#\2\2\u0200g\3\2\2\2\u0201\u0202\t\b\2")
-        buf.write("\2\u0202i\3\2\2\2\u0203\u0204\7<\2\2\u0204\u0205\7D\2")
-        buf.write("\2\u0205\u0206\7=\2\2\u0206\u0207\5h\65\2\u0207k\3\2\2")
-        buf.write("\2\u0208\u0211\7E\2\2\u0209\u0211\7C\2\2\u020a\u0211\5")
-        buf.write("n8\2\u020b\u0211\7A\2\2\u020c\u0211\5p9\2\u020d\u0211")
-        buf.write("\7D\2\2\u020e\u0211\7\31\2\2\u020f\u0211\7\35\2\2\u0210")
-        buf.write("\u0208\3\2\2\2\u0210\u0209\3\2\2\2\u0210\u020a\3\2\2\2")
-        buf.write("\u0210\u020b\3\2\2\2\u0210\u020c\3\2\2\2\u0210\u020d\3")
-        buf.write("\2\2\2\u0210\u020e\3\2\2\2\u0210\u020f\3\2\2\2\u0211m")
-        buf.write("\3\2\2\2\u0212\u0213\t\t\2\2\u0213o\3\2\2\2\u0214\u0215")
-        buf.write("\7<\2\2\u0215\u021a\5l\67\2\u0216\u0217\7\67\2\2\u0217")
-        buf.write("\u0219\5l\67\2\u0218\u0216\3\2\2\2\u0219\u021c\3\2\2\2")
-        buf.write("\u021a\u0218\3\2\2\2\u021a\u021b\3\2\2\2\u021b\u021d\3")
-        buf.write("\2\2\2\u021c\u021a\3\2\2\2\u021d\u021e\7=\2\2\u021eq\3")
+        buf.write("\u01bf\5T+\2\u01bf\u01cb\3\2\2\2\u01c0\u01c1\f\4\2\2\u01c1")
+        buf.write("\u01c2\7\66\2\2\u01c2\u01c7\7B\2\2\u01c3\u01c4\7;\2\2")
+        buf.write("\u01c4\u01c5\5@!\2\u01c5\u01c6\7:\2\2\u01c6\u01c8\3\2")
+        buf.write("\2\2\u01c7\u01c3\3\2\2\2\u01c7\u01c8\3\2\2\2\u01c8\u01ca")
+        buf.write("\3\2\2\2\u01c9\u01c0\3\2\2\2\u01ca\u01cd\3\2\2\2\u01cb")
+        buf.write("\u01c9\3\2\2\2\u01cb\u01cc\3\2\2\2\u01ccS\3\2\2\2\u01cd")
+        buf.write("\u01cb\3\2\2\2\u01ce\u01cf\7B\2\2\u01cf\u01d1\7\66\2\2")
+        buf.write("\u01d0\u01ce\3\2\2\2\u01d0\u01d1\3\2\2\2\u01d1\u01d2\3")
+        buf.write("\2\2\2\u01d2\u01d7\7@\2\2\u01d3\u01d4\7;\2\2\u01d4\u01d5")
+        buf.write("\5@!\2\u01d5\u01d6\7:\2\2\u01d6\u01d8\3\2\2\2\u01d7\u01d3")
+        buf.write("\3\2\2\2\u01d7\u01d8\3\2\2\2\u01d8\u01db\3\2\2\2\u01d9")
+        buf.write("\u01db\5V,\2\u01da\u01d0\3\2\2\2\u01da\u01d9\3\2\2\2\u01db")
+        buf.write("U\3\2\2\2\u01dc\u01dd\7\36\2\2\u01dd\u01de\7B\2\2\u01de")
+        buf.write("\u01df\7;\2\2\u01df\u01e0\5@!\2\u01e0\u01e1\7:\2\2\u01e1")
+        buf.write("\u01e4\3\2\2\2\u01e2\u01e4\5X-\2\u01e3\u01dc\3\2\2\2\u01e3")
+        buf.write("\u01e2\3\2\2\2\u01e4W\3\2\2\2\u01e5\u01e6\7;\2\2\u01e6")
+        buf.write("\u01e7\5B\"\2\u01e7\u01e8\7:\2\2\u01e8\u01ec\3\2\2\2\u01e9")
+        buf.write("\u01ec\5l\67\2\u01ea\u01ec\7B\2\2\u01eb\u01e5\3\2\2\2")
+        buf.write("\u01eb\u01e9\3\2\2\2\u01eb\u01ea\3\2\2\2\u01ecY\3\2\2")
+        buf.write("\2\u01ed\u01f0\5\\/\2\u01ee\u01f0\5^\60\2\u01ef\u01ed")
+        buf.write("\3\2\2\2\u01ef\u01ee\3\2\2\2\u01f0[\3\2\2\2\u01f1\u01f2")
+        buf.write("\t\3\2\2\u01f2]\3\2\2\2\u01f3\u01f4\t\4\2\2\u01f4_\3\2")
+        buf.write("\2\2\u01f5\u01f6\t\5\2\2\u01f6a\3\2\2\2\u01f7\u01f8\t")
+        buf.write("\6\2\2\u01f8c\3\2\2\2\u01f9\u01fa\t\7\2\2\u01fae\3\2\2")
+        buf.write("\2\u01fb\u01fc\7#\2\2\u01fcg\3\2\2\2\u01fd\u01fe\t\b\2")
+        buf.write("\2\u01fei\3\2\2\2\u01ff\u0200\7<\2\2\u0200\u0201\7D\2")
+        buf.write("\2\u0201\u0202\7=\2\2\u0202\u0203\5h\65\2\u0203k\3\2\2")
+        buf.write("\2\u0204\u020d\7E\2\2\u0205\u020d\7C\2\2\u0206\u020d\5")
+        buf.write("n8\2\u0207\u020d\7A\2\2\u0208\u020d\5p9\2\u0209\u020d")
+        buf.write("\7D\2\2\u020a\u020d\7\31\2\2\u020b\u020d\7\35\2\2\u020c")
+        buf.write("\u0204\3\2\2\2\u020c\u0205\3\2\2\2\u020c\u0206\3\2\2\2")
+        buf.write("\u020c\u0207\3\2\2\2\u020c\u0208\3\2\2\2\u020c\u0209\3")
+        buf.write("\2\2\2\u020c\u020a\3\2\2\2\u020c\u020b\3\2\2\2\u020dm")
+        buf.write("\3\2\2\2\u020e\u020f\t\t\2\2\u020fo\3\2\2\2\u0210\u0211")
+        buf.write("\7<\2\2\u0211\u0216\5l\67\2\u0212\u0213\7\67\2\2\u0213")
+        buf.write("\u0215\5l\67\2\u0214\u0212\3\2\2\2\u0215\u0218\3\2\2\2")
+        buf.write("\u0216\u0214\3\2\2\2\u0216\u0217\3\2\2\2\u0217\u0219\3")
+        buf.write("\2\2\2\u0218\u0216\3\2\2\2\u0219\u021a\7=\2\2\u021aq\3")
         buf.write("\2\2\2.u}\u0084\u008c\u0096\u00a6\u00ae\u00bc\u00c0\u00c7")
         buf.write("\u00cc\u00d2\u00d8\u00e3\u00ee\u00f4\u010b\u0118\u0127")
         buf.write("\u014c\u0151\u015e\u0161\u0168\u0172\u0176\u017d\u0184")
-        buf.write("\u018f\u019b\u01a7\u01ae\u01b3\u01bb\u01ca\u01cc\u01d1")
-        buf.write("\u01d6\u01de\u01e7\u01ef\u01f3\u0210\u021a")
+        buf.write("\u018f\u019b\u01a7\u01ae\u01b3\u01bb\u01c7\u01cb\u01d0")
+        buf.write("\u01d7\u01da\u01e3\u01eb\u01ef\u020c\u0216")
         return buf.getvalue()
 
 
@@ -3261,7 +3259,7 @@ class CSlangParser ( Parser ):
             self.state = 444
             self.expr9()
             self._ctx.stop = self._input.LT(-1)
-            self.state = 458
+            self.state = 457
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,35,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -3269,44 +3267,29 @@ class CSlangParser ( Parser ):
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    self.state = 456
+                    localctx = CSlangParser.Expr8Context(self, _parentctx, _parentState)
+                    self.pushNewRecursionContext(localctx, _startState, self.RULE_expr8)
+                    self.state = 446
+                    if not self.precpred(self._ctx, 2):
+                        from antlr4.error.Errors import FailedPredicateException
+                        raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
+                    self.state = 447
+                    self.match(CSlangParser.DOT)
+                    self.state = 448
+                    self.match(CSlangParser.ID)
+                    self.state = 453
                     self._errHandler.sync(self)
                     la_ = self._interp.adaptivePredict(self._input,34,self._ctx)
                     if la_ == 1:
-                        localctx = CSlangParser.Expr8Context(self, _parentctx, _parentState)
-                        self.pushNewRecursionContext(localctx, _startState, self.RULE_expr8)
-                        self.state = 446
-                        if not self.precpred(self._ctx, 3):
-                            from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
-                        self.state = 447
-                        self.match(CSlangParser.DOT)
-                        self.state = 448
-                        self.match(CSlangParser.ID)
-                        pass
-
-                    elif la_ == 2:
-                        localctx = CSlangParser.Expr8Context(self, _parentctx, _parentState)
-                        self.pushNewRecursionContext(localctx, _startState, self.RULE_expr8)
                         self.state = 449
-                        if not self.precpred(self._ctx, 2):
-                            from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                        self.state = 450
-                        self.match(CSlangParser.DOT)
-                        self.state = 451
-                        self.match(CSlangParser.ID)
-
-                        self.state = 452
                         self.match(CSlangParser.LPAREN)
-                        self.state = 453
+                        self.state = 450
                         self.expr_lst()
-                        self.state = 454
+                        self.state = 451
                         self.match(CSlangParser.RPAREN)
-                        pass
 
              
-                self.state = 460
+                self.state = 459
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,35,self._ctx)
 
@@ -3367,51 +3350,40 @@ class CSlangParser ( Parser ):
         self.enterRule(localctx, 82, self.RULE_expr9)
         self._la = 0 # Token type
         try:
-            self.state = 476
+            self.state = 472
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,38,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 463
+                self.state = 462
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if _la==CSlangParser.ID:
-                    self.state = 461
+                    self.state = 460
                     self.match(CSlangParser.ID)
-                    self.state = 462
+                    self.state = 461
                     self.match(CSlangParser.DOT)
 
 
-                self.state = 465
+                self.state = 464
                 self.match(CSlangParser.AT_ID)
+                self.state = 469
+                self._errHandler.sync(self)
+                la_ = self._interp.adaptivePredict(self._input,37,self._ctx)
+                if la_ == 1:
+                    self.state = 465
+                    self.match(CSlangParser.LPAREN)
+                    self.state = 466
+                    self.expr_lst()
+                    self.state = 467
+                    self.match(CSlangParser.RPAREN)
+
+
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 468
-                self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                if _la==CSlangParser.ID:
-                    self.state = 466
-                    self.match(CSlangParser.ID)
-                    self.state = 467
-                    self.match(CSlangParser.DOT)
-
-
-                self.state = 470
-                self.match(CSlangParser.AT_ID)
-
                 self.state = 471
-                self.match(CSlangParser.LPAREN)
-                self.state = 472
-                self.expr_lst()
-                self.state = 473
-                self.match(CSlangParser.RPAREN)
-                pass
-
-            elif la_ == 3:
-                self.enterOuterAlt(localctx, 3)
-                self.state = 475
                 self.expr10()
                 pass
 
@@ -3469,25 +3441,25 @@ class CSlangParser ( Parser ):
         localctx = CSlangParser.Expr10Context(self, self._ctx, self.state)
         self.enterRule(localctx, 84, self.RULE_expr10)
         try:
-            self.state = 485
+            self.state = 481
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [CSlangParser.NEW]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 478
+                self.state = 474
                 self.match(CSlangParser.NEW)
-                self.state = 479
+                self.state = 475
                 self.match(CSlangParser.ID)
-                self.state = 480
+                self.state = 476
                 self.match(CSlangParser.LPAREN)
-                self.state = 481
+                self.state = 477
                 self.expr_lst()
-                self.state = 482
+                self.state = 478
                 self.match(CSlangParser.RPAREN)
                 pass
             elif token in [CSlangParser.TRUE, CSlangParser.FALSE, CSlangParser.NULL, CSlangParser.SELF, CSlangParser.LPAREN, CSlangParser.LBRACK, CSlangParser.STRING_LITERAL, CSlangParser.ID, CSlangParser.FLOAT_LITERAL, CSlangParser.NON_ZERO_INT, CSlangParser.INT_LITERAL]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 484
+                self.state = 480
                 self.expr11()
                 pass
             else:
@@ -3543,26 +3515,26 @@ class CSlangParser ( Parser ):
         localctx = CSlangParser.Expr11Context(self, self._ctx, self.state)
         self.enterRule(localctx, 86, self.RULE_expr11)
         try:
-            self.state = 493
+            self.state = 489
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [CSlangParser.LPAREN]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 487
+                self.state = 483
                 self.match(CSlangParser.LPAREN)
-                self.state = 488
+                self.state = 484
                 self.expr()
-                self.state = 489
+                self.state = 485
                 self.match(CSlangParser.RPAREN)
                 pass
             elif token in [CSlangParser.TRUE, CSlangParser.FALSE, CSlangParser.NULL, CSlangParser.SELF, CSlangParser.LBRACK, CSlangParser.STRING_LITERAL, CSlangParser.FLOAT_LITERAL, CSlangParser.NON_ZERO_INT, CSlangParser.INT_LITERAL]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 491
+                self.state = 487
                 self.literal()
                 pass
             elif token in [CSlangParser.ID]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 492
+                self.state = 488
                 self.match(CSlangParser.ID)
                 pass
             else:
@@ -3609,17 +3581,17 @@ class CSlangParser ( Parser ):
         localctx = CSlangParser.RelationalContext(self, self._ctx, self.state)
         self.enterRule(localctx, 88, self.RULE_relational)
         try:
-            self.state = 497
+            self.state = 493
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [CSlangParser.EQUAL, CSlangParser.NOT_EQUAL]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 495
+                self.state = 491
                 self.relat_bool()
                 pass
             elif token in [CSlangParser.LESS, CSlangParser.GREATER, CSlangParser.LESS_EQUAL, CSlangParser.GREATER_EQUAL]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 496
+                self.state = 492
                 self.relat_int_float()
                 pass
             else:
@@ -3666,7 +3638,7 @@ class CSlangParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 499
+            self.state = 495
             _la = self._input.LA(1)
             if not(_la==CSlangParser.EQUAL or _la==CSlangParser.NOT_EQUAL):
                 self._errHandler.recoverInline(self)
@@ -3720,7 +3692,7 @@ class CSlangParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 501
+            self.state = 497
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << CSlangParser.LESS) | (1 << CSlangParser.GREATER) | (1 << CSlangParser.LESS_EQUAL) | (1 << CSlangParser.GREATER_EQUAL))) != 0)):
                 self._errHandler.recoverInline(self)
@@ -3774,7 +3746,7 @@ class CSlangParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 503
+            self.state = 499
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << CSlangParser.MULTIPLY) | (1 << CSlangParser.DIVIDE_I) | (1 << CSlangParser.DIVIDE_I_L) | (1 << CSlangParser.DIVIDE_F))) != 0)):
                 self._errHandler.recoverInline(self)
@@ -3822,7 +3794,7 @@ class CSlangParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 505
+            self.state = 501
             _la = self._input.LA(1)
             if not(_la==CSlangParser.PLUS or _la==CSlangParser.MINUS):
                 self._errHandler.recoverInline(self)
@@ -3870,7 +3842,7 @@ class CSlangParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 507
+            self.state = 503
             _la = self._input.LA(1)
             if not(_la==CSlangParser.AND or _la==CSlangParser.OR):
                 self._errHandler.recoverInline(self)
@@ -3914,7 +3886,7 @@ class CSlangParser ( Parser ):
         self.enterRule(localctx, 100, self.RULE_logical_not)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 509
+            self.state = 505
             self.match(CSlangParser.NOT)
         except RecognitionException as re:
             localctx.exception = re
@@ -3966,7 +3938,7 @@ class CSlangParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 511
+            self.state = 507
             _la = self._input.LA(1)
             if not(((((_la - 18)) & ~0x3f) == 0 and ((1 << (_la - 18)) & ((1 << (CSlangParser.INT - 18)) | (1 << (CSlangParser.FLOAT - 18)) | (1 << (CSlangParser.BOOL - 18)) | (1 << (CSlangParser.STRING - 18)) | (1 << (CSlangParser.ID - 18)))) != 0)):
                 self._errHandler.recoverInline(self)
@@ -4020,13 +3992,13 @@ class CSlangParser ( Parser ):
         self.enterRule(localctx, 104, self.RULE_array_type)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 513
+            self.state = 509
             self.match(CSlangParser.LBRACK)
-            self.state = 514
+            self.state = 510
             self.match(CSlangParser.NON_ZERO_INT)
-            self.state = 515
+            self.state = 511
             self.match(CSlangParser.RBRACK)
-            self.state = 516
+            self.state = 512
             self.typ()
         except RecognitionException as re:
             localctx.exception = re
@@ -4087,47 +4059,47 @@ class CSlangParser ( Parser ):
         localctx = CSlangParser.LiteralContext(self, self._ctx, self.state)
         self.enterRule(localctx, 106, self.RULE_literal)
         try:
-            self.state = 526
+            self.state = 522
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [CSlangParser.INT_LITERAL]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 518
+                self.state = 514
                 self.match(CSlangParser.INT_LITERAL)
                 pass
             elif token in [CSlangParser.FLOAT_LITERAL]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 519
+                self.state = 515
                 self.match(CSlangParser.FLOAT_LITERAL)
                 pass
             elif token in [CSlangParser.TRUE, CSlangParser.FALSE]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 520
+                self.state = 516
                 self.bool_literal()
                 pass
             elif token in [CSlangParser.STRING_LITERAL]:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 521
+                self.state = 517
                 self.match(CSlangParser.STRING_LITERAL)
                 pass
             elif token in [CSlangParser.LBRACK]:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 522
+                self.state = 518
                 self.array()
                 pass
             elif token in [CSlangParser.NON_ZERO_INT]:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 523
+                self.state = 519
                 self.match(CSlangParser.NON_ZERO_INT)
                 pass
             elif token in [CSlangParser.NULL]:
                 self.enterOuterAlt(localctx, 7)
-                self.state = 524
+                self.state = 520
                 self.match(CSlangParser.NULL)
                 pass
             elif token in [CSlangParser.SELF]:
                 self.enterOuterAlt(localctx, 8)
-                self.state = 525
+                self.state = 521
                 self.match(CSlangParser.SELF)
                 pass
             else:
@@ -4174,7 +4146,7 @@ class CSlangParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 528
+            self.state = 524
             _la = self._input.LA(1)
             if not(_la==CSlangParser.TRUE or _la==CSlangParser.FALSE):
                 self._errHandler.recoverInline(self)
@@ -4235,23 +4207,23 @@ class CSlangParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 530
+            self.state = 526
             self.match(CSlangParser.LBRACK)
-            self.state = 531
+            self.state = 527
             self.literal()
-            self.state = 536
+            self.state = 532
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==CSlangParser.COMMA:
-                self.state = 532
+                self.state = 528
                 self.match(CSlangParser.COMMA)
-                self.state = 533
+                self.state = 529
                 self.literal()
-                self.state = 538
+                self.state = 534
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 539
+            self.state = 535
             self.match(CSlangParser.RBRACK)
         except RecognitionException as re:
             localctx.exception = re
@@ -4293,10 +4265,6 @@ class CSlangParser ( Parser ):
 
     def expr8_sempred(self, localctx:Expr8Context, predIndex:int):
             if predIndex == 3:
-                return self.precpred(self._ctx, 3)
-         
-
-            if predIndex == 4:
                 return self.precpred(self._ctx, 2)
          
 

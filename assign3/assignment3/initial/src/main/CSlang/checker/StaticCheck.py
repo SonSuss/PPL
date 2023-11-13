@@ -97,27 +97,30 @@ class GetEvm(BaseVisitor,Utils):
     
     def visitMethodDecl(self,ast,c):
         if ast.name.name in map(lambda x: x.name,c):
-            raise Redeclared(Method(),ast.name.name)
-        reduce(lambda a,e : self.visit(e,a) + a ,ast.param + ast.body.stmt,[])
+            if not ast.name.name =="constructor":
+                # partype = reduce(lambda a,e : [e.varType] + a, ast.param ,[])
+                # if next(filter(lambda x: x.name =="constructor" and x.typ.partype == partype, c),None):
+                #     raise Redeclared(Method(),ast.name.name)
+                raise Redeclared(Method(),ast.name.name)
         partype = reduce(lambda a,e : [e.varType] + a, ast.param ,[])
         return [Member(ast.name.name,MType(partype,ast.returnType))] + c
     
-    def visitFor(self,ast,c):
-        mem = reduce(lambda a,e : self.visit(e,a) + a ,ast.loop.stmt, [])
-        return []
+    # def visitFor(self,ast,c):
+    #     mem = reduce(lambda a,e : self.visit(e,a) + a ,ast.loop.stmt, [])
+    #     return []
     
-    def visitIf(self,ast,c):
-        thenblock = []
-        elseblock = []
-        if ast.preStmt :
-            thenblock =reduce(lambda a,e : self.visit(e,a) + a ,ast.preStmt.stmt + ast.thenStmt.stmt, [])
-            if ast.elseStmt:
-                elseblock = reduce(lambda a,e : self.visit(e,a) + a , ast.preStmt.stmt + ast.elseStmt.stmt, [])
-        else:
-            thenblock =reduce(lambda a,e : self.visit(e,a) + a ,ast.thenStmt.stmt, [])
-            if ast.elseStmt:
-                elseblock = reduce(lambda a,e : self.visit(e,a) + a ,ast.elseStmt.stmt, [])
-        return []
+    # def visitIf(self,ast,c):
+    #     thenblock = []
+    #     elseblock = []
+    #     if ast.preStmt :
+    #         thenblock =reduce(lambda a,e : self.visit(e,a) + a ,ast.preStmt.stmt, [])
+    #         if ast.elseStmt:
+    #             elseblock = reduce(lambda a,e : self.visit(e,a) + a ,ast.elseStmt.stmt, [])
+    #     else:
+    #         thenblock =reduce(lambda a,e : self.visit(e,a) + a ,ast.thenStmt.stmt, [])
+    #         if ast.elseStmt:
+    #             elseblock = reduce(lambda a,e : self.visit(e,a) + a ,ast.elseStmt.stmt, [])
+    #     return []
 
     
     def visitAttributeDecl(self,ast,c):
@@ -151,7 +154,7 @@ class StaticChecker(BaseVisitor,Utils):
                             ])]
     def check(self):
         self.visit(self.ast,self.io)
-        return "successful"
+        return ""
 
     def visitProgram(self,ast, c):
         evm=GetEvm().visit(ast,c)
