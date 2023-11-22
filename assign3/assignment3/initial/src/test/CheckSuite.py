@@ -3,367 +3,458 @@ from TestUtils import TestChecker
 from AST import *
  
 class CheckSuite(unittest.TestCase):
-    def test_redeclared_class(self):
-        """class a {} class Program {func @main() {}} class a {}"""
-        input = Program([ClassDecl(Id("a"),[]),
-                         ClassDecl(Id("Program"),[MethodDecl(Id("@main"),[],VoidType(),Block([]))]),
-                         ClassDecl(Id("a"),[])])
-        expect = "Redeclared Class: a"
-        self.assertTrue(TestChecker.test(input,expect,400))
-    def test_redeclared_attribute(self):
-        """class Program {func @main() {}} class a {var a:int;var c:int;var c:int;}"""
-        input = Program([ClassDecl(Id("Program"),[MethodDecl(Id("@main"),[],VoidType(),Block([]))]),
-                         ClassDecl(Id("a"),[VarDecl(Id("a"),IntType()),VarDecl(Id("c"),IntType()),VarDecl(Id("c"),IntType())])])
-        expect = "Redeclared Attribute: c"
-        self.assertTrue(TestChecker.test(input,expect,401))
+    # def test_redeclared_class(self):
+    #     """class a {} class Program {func @main() {}} class a {}"""
+    #     input = Program([ClassDecl(Id("a"),[]),
+    #                      ClassDecl(Id("Program"),[MethodDecl(Id("@main"),[],VoidType(),Block([]))]),
+    #                      ClassDecl(Id("a"),[])])
+    #     expect = "Redeclared Class: a"
+    #     self.assertTrue(TestChecker.test(input,expect,400))
+    # def test_redeclared_attribute(self):
+    #     """class Program {func @main() {}} class a {var a:int;var c:int;var c:int;}"""
+    #     input = Program([ClassDecl(Id("Program"),[MethodDecl(Id("@main"),[],VoidType(),Block([]))]),
+    #                      ClassDecl(Id("a"),[VarDecl(Id("a"),IntType()),VarDecl(Id("c"),IntType()),VarDecl(Id("c"),IntType())])])
+    #     expect = "Redeclared Attribute: c"
+    #     self.assertTrue(TestChecker.test(input,expect,401))
     
-    def test_redeclared_class_with_ast(self):
-        input = Program([ClassDecl(Id("a"),[]),ClassDecl(Id("b"),[]),ClassDecl(Id("a"),[]),
-                         ClassDecl(Id("Program"),[MethodDecl(Id("@main"),[],VoidType(),Block([]))])])
-        expect = "Redeclared Class: a"
-        self.assertTrue(TestChecker.test(input,expect,402))
-    def test_redeclared_attribute_with_ast(self):
-        input = Program([ClassDecl(Id("Program"),[MethodDecl(Id("@main"),[],VoidType(),Block([]))]),
-                         ClassDecl(Id("a"),[AttributeDecl(VarDecl(Id("a"),IntType())),AttributeDecl(VarDecl(Id("c"),IntType())),AttributeDecl(VarDecl(Id("c"),IntType()))])])
-        expect = "Redeclared Attribute: c"
-        self.assertTrue(TestChecker.test(input,expect,403))    
-    def test_method_redeclered_param_block(self): #need to fix after submit
-        """
-        Class a {
-            func a (a:int, b:int): int{
-                var a : int =1 ;
-            }
-            }"""
-        input = Program([ClassDecl(Id('a'),[MethodDecl(Id("a"),
-                                                             [VarDecl(Id("a"),IntType()),
-                                                              VarDecl(Id("b"),IntType())],
-                                                             IntType(),
-                                                             Block([VarDecl(Id("a"),IntType(),IntLiteral(1))]))])])
-        expect = "No Entry Point"
-        self.assertTrue(TestChecker.test(input,expect,404))
-    
-    def test_method_redeclered(self):
-        """Class Program {
-            func a (a:int, b:int): int{}
-            func a (a:int, b:int): int{}
-            func @main (){}
-            }"""
-        input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("a"),
-                                                             [VarDecl(Id("a"),IntType()),
-                                                              VarDecl(Id("b"),IntType())],
-                                                             IntType(),
-                                                             Block([])),
-                                                  MethodDecl(Id("a"),
-                                                             [VarDecl(Id("a"),IntType()),
-                                                              VarDecl(Id("b"),IntType())],
-                                                             IntType(),
-                                                             Block([])),
-                                                  MethodDecl(Id("@main"),[],VoidType(),Block([]))])])
-        expect = "Redeclared Method: a"
-        self.assertTrue(TestChecker.test(input,expect,405)) 
-    
-    # def test_for_redeclered(self):
-    #     """Class Program {
-    #         func @main (){
-    #             for a:=1;a<10;a=a+1 {
-    #                 var a :int ;
-    #                 const a :int ;
-    #             }
+    # def test_redeclared_class_with_ast(self):
+    #     input = Program([ClassDecl(Id("a"),[]),ClassDecl(Id("b"),[]),ClassDecl(Id("a"),[]),
+    #                      ClassDecl(Id("Program"),[MethodDecl(Id("@main"),[],VoidType(),Block([]))])])
+    #     expect = "Redeclared Class: a"
+    #     self.assertTrue(TestChecker.test(input,expect,402))
+    # def test_redeclared_attribute_with_ast(self):
+    #     input = Program([ClassDecl(Id("Program"),[MethodDecl(Id("@main"),[],VoidType(),Block([]))]),
+    #                      ClassDecl(Id("a"),[AttributeDecl(VarDecl(Id("a"),IntType())),AttributeDecl(VarDecl(Id("c"),IntType())),AttributeDecl(VarDecl(Id("c"),IntType()))])])
+    #     expect = "Redeclared Attribute: c"
+    #     self.assertTrue(TestChecker.test(input,expect,403))    
+    # def test_method_redeclered_param_block(self): #need to fix after submit
+    #     """
+    #     Class a {
+    #         func a (a:int, b:int): int{
+    #             var a : int =1 ;
     #         }
     #         }"""
-    #     input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),
-    #                                                          [],
-    #                                                          VoidType(),
-    #                                                          Block([For(Assign(Id("a"),IntLiteral(1)),BinaryOp("<",Id("a"),IntLiteral(10)),Assign(Id("a"),BinaryOp("+",Id("a"),IntLiteral(1))),
-    #                                                                     Block([VarDecl(Id("a"),IntType()),ConstDecl(Id("a"),IntType(),None)]))]))])])
-    #     expect = "Redeclared Attribute: a"
-    #     self.assertTrue(TestChecker.test(input,expect,406)) 
-    # def test_if_redeclered(self):
+    #     input = Program([ClassDecl(Id('a'),[MethodDecl(Id("a"),
+    #                                                          [VarDecl(Id("a"),IntType()),
+    #                                                           VarDecl(Id("b"),IntType())],
+    #                                                          IntType(),
+    #                                                          Block([VarDecl(Id("a"),IntType(),IntLiteral(1))]))])])
+    #     expect = "No Entry Point"
+    #     self.assertTrue(TestChecker.test(input,expect,404))
+    
+    # def test_method_redeclered(self):
+    #     """Class Program {
+    #         func a (a:int, b:int): int{}
+    #         func a (a:int, b:int): int{}
+    #         func @main (){}
+    #         }"""
+    #     input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("a"),
+    #                                                          [VarDecl(Id("a"),IntType()),
+    #                                                           VarDecl(Id("b"),IntType())],
+    #                                                          IntType(),
+    #                                                          Block([])),
+    #                                               MethodDecl(Id("a"),
+    #                                                          [VarDecl(Id("a"),IntType()),
+    #                                                           VarDecl(Id("b"),IntType())],
+    #                                                          IntType(),
+    #                                                          Block([])),
+    #                                               MethodDecl(Id("@main"),[],VoidType(),Block([]))])])
+    #     expect = "Redeclared Method: a"
+    #     self.assertTrue(TestChecker.test(input,expect,405)) 
+    
+    # # def test_for_redeclered(self):
+    # #     """Class Program {
+    # #         func @main (){
+    # #             for a:=1;a<10;a=a+1 {
+    # #                 var a :int ;
+    # #                 const a :int ;
+    # #             }
+    # #         }
+    # #         }"""
+    # #     input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),
+    # #                                                          [],
+    # #                                                          VoidType(),
+    # #                                                          Block([For(Assign(Id("a"),IntLiteral(1)),BinaryOp("<",Id("a"),IntLiteral(10)),Assign(Id("a"),BinaryOp("+",Id("a"),IntLiteral(1))),
+    # #                                                                     Block([VarDecl(Id("a"),IntType()),ConstDecl(Id("a"),IntType(),None)]))]))])])
+    # #     expect = "Redeclared Attribute: a"
+    # #     self.assertTrue(TestChecker.test(input,expect,406)) 
+    # # def test_if_redeclered(self):
+    # #     """Class Program {
+    # #         func @main (): int{
+    # #             if a < 0 {
+    # #                 var a :int ;
+    # #                 const a :int;
+    # #             }
+    # #         }
+    # #         }"""
+    # #     input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),
+    # #                                                          [],
+    # #                                                          VoidType(),
+    # #                                                          Block([If(BinaryOp("<",Id("a"),IntLiteral(0)),Block([VarDecl(Id("a"),IntType()),ConstDecl(Id("a"),IntType(),None)]))]))])])
+    # #     expect = "Redeclared Attribute: a"
+    # #     self.assertTrue(TestChecker.test(input,expect,407))
+        
+    # # def test_if_redeclered_prestmt(self):
+    # #     """Class Program {
+    # #         func @main (): int{
+    # #             if {const a: int =10; var a:int;} a < 0 {
+    # #                 var a :int ;
+    # #             }
+    # #         }
+    # #         }"""
+    # #     input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),
+    # #                                                          [],
+    # #                                                          VoidType(),
+    # #                                                          Block([If(BinaryOp("<",Id("a"),IntLiteral(0)),Block([VarDecl(Id("a"),IntType())]),
+    # #                                                                    Block([ConstDecl(Id("a"),IntType(),IntLiteral(10)),VarDecl(Id("a"),IntType())]))]))])])
+    # #     expect = "Redeclared Attribute: a"
+    # #     self.assertTrue(TestChecker.test(input,expect,408))
+        
+    # def test_if_redeclered_elseStmt(self):
     #     """Class Program {
     #         func @main (): int{
     #             if a < 0 {
     #                 var a :int ;
-    #                 const a :int;
+    #             }
+    #             else {
+    #                 var b:int;
+    #                 const b:int;
     #             }
     #         }
     #         }"""
     #     input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),
     #                                                          [],
     #                                                          VoidType(),
-    #                                                          Block([If(BinaryOp("<",Id("a"),IntLiteral(0)),Block([VarDecl(Id("a"),IntType()),ConstDecl(Id("a"),IntType(),None)]))]))])])
-    #     expect = "Redeclared Attribute: a"
-    #     self.assertTrue(TestChecker.test(input,expect,407))
+    #                                                          Block([If(BinaryOp("<",Id("a"),IntLiteral(0)),Block([VarDecl(Id("a"),IntType())]),None,Block([VarDecl(Id("b"),IntType()),ConstDecl(Id("b"),IntType(),None)]))]))])])
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,409))
         
-    # def test_if_redeclered_prestmt(self):
+    # def test_if_redeclered_prestmt_elseStmt(self):
     #     """Class Program {
     #         func @main (): int{
-    #             if {const a: int =10; var a:int;} a < 0 {
-    #                 var a :int ;
+    #             if {const a: int =10} a < 0 {
+    #                 var b :int ;
+    #             }
+    #             else {
+    #                 var a:int ;
+    #                 coust a:int;
     #             }
     #         }
     #         }"""
     #     input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),
     #                                                          [],
     #                                                          VoidType(),
-    #                                                          Block([If(BinaryOp("<",Id("a"),IntLiteral(0)),Block([VarDecl(Id("a"),IntType())]),
-    #                                                                    Block([ConstDecl(Id("a"),IntType(),IntLiteral(10)),VarDecl(Id("a"),IntType())]))]))])])
-    #     expect = "Redeclared Attribute: a"
-    #     self.assertTrue(TestChecker.test(input,expect,408))
+    #                                                          Block([If(BinaryOp("<",Id("a"),IntLiteral(0)),
+    #                                                                    Block([VarDecl(Id("b"),IntType())]),
+    #                                                                    Block([ConstDecl(Id("a"),IntType(),IntLiteral(10))]),
+    #                                                                    Block([VarDecl(Id("a"),IntType()),ConstDecl(Id("a"),IntType(),None)]))]))])])
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,410))
         
-    def test_if_redeclered_elseStmt(self):
-        """Class Program {
-            func @main (): int{
-                if a < 0 {
-                    var a :int ;
-                }
-                else {
-                    var b:int;
-                    const b:int;
-                }
-            }
-            }"""
-        input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),
-                                                             [],
-                                                             VoidType(),
-                                                             Block([If(BinaryOp("<",Id("a"),IntLiteral(0)),Block([VarDecl(Id("a"),IntType())]),None,Block([VarDecl(Id("b"),IntType()),ConstDecl(Id("b"),IntType(),None)]))]))])])
-        expect = "[]"
-        self.assertTrue(TestChecker.test(input,expect,409))
-        
-    def test_if_redeclered_prestmt_elseStmt(self):
-        """Class Program {
-            func @main (): int{
-                if {const a: int =10} a < 0 {
-                    var b :int ;
-                }
-                else {
-                    var a:int ;
-                    coust a:int;
-                }
-            }
-            }"""
-        input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),
-                                                             [],
-                                                             VoidType(),
-                                                             Block([If(BinaryOp("<",Id("a"),IntLiteral(0)),
-                                                                       Block([VarDecl(Id("b"),IntType())]),
-                                                                       Block([ConstDecl(Id("a"),IntType(),IntLiteral(10))]),
-                                                                       Block([VarDecl(Id("a"),IntType()),ConstDecl(Id("a"),IntType(),None)]))]))])])
-        expect = "[]"
-        self.assertTrue(TestChecker.test(input,expect,410))
-        
-    def test_no_entry_point_class(self):  
-        """ class a {} 
-            class b {}
-        """
-        input = Program([ClassDecl(Id('a'),[]),
-                         ClassDecl(Id('b'),[])])
-        expect = "No Entry Point"
-        self.assertTrue(TestChecker.test(input,expect,411))
+    # def test_no_entry_point_class(self):  
+    #     """ class a {} 
+    #         class b {}
+    #     """
+    #     input = Program([ClassDecl(Id('a'),[]),
+    #                      ClassDecl(Id('b'),[])])
+    #     expect = "No Entry Point"
+    #     self.assertTrue(TestChecker.test(input,expect,411))
 
-    def test_no_entry_point_method(self):  
-        """ class a {} 
-            class Program {
-                func a () : int {}
-            }
-        """
-        input = Program([ClassDecl(Id('a'),[]),
-                         ClassDecl(Id('Program'),[MethodDecl(Id("a"),[],IntType(),Block([]))])])
-        expect = "No Entry Point"
-        self.assertTrue(TestChecker.test(input,expect,412))
-        
-
-    def test_no_entry_point_method_atrribute_samename(self):  
-        """ class a {} 
-            class Program {
-                var @main : int;
-            }
-        """
-        input = Program([ClassDecl(Id('a'),[]),
-                         ClassDecl(Id('Program'),[VarDecl(Id("@main"),IntType())])])
-        expect = "No Entry Point"
-        self.assertTrue(TestChecker.test(input,expect,413))
-        
-
-    def test_no_entry_point_method_param(self):  
-        """ class a {} 
-            class Program {
-                func @main(a:int){}
-            }
-        """
-        input = Program([ClassDecl(Id('a'),[]),
-                         ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[VarDecl(Id("a"),IntType())],VoidType(),Block([]))])])
-        expect = "No Entry Point"
-        self.assertTrue(TestChecker.test(input,expect,414))
-    
-    # def test_if_in_if(self):  
+    # def test_no_entry_point_method(self):  
     #     """ class a {} 
     #         class Program {
+    #             func a () : int {}
+    #         }
+    #     """
+    #     input = Program([ClassDecl(Id('a'),[]),
+    #                      ClassDecl(Id('Program'),[MethodDecl(Id("a"),[],IntType(),Block([]))])])
+    #     expect = "No Entry Point"
+    #     self.assertTrue(TestChecker.test(input,expect,412))
+        
+
+    # def test_no_entry_point_method_atrribute_samename(self):  
+    #     """ class a {} 
+    #         class Program {
+    #             var @main : int;
+    #         }
+    #     """
+    #     input = Program([ClassDecl(Id('a'),[]),
+    #                      ClassDecl(Id('Program'),[VarDecl(Id("@main"),IntType())])])
+    #     expect = "No Entry Point"
+    #     self.assertTrue(TestChecker.test(input,expect,413))
+        
+
+    # def test_no_entry_point_method_param(self):  
+    #     """ class a {} 
+    #         class Program {
+    #             func @main(a:int){}
+    #         }
+    #     """
+    #     input = Program([ClassDecl(Id('a'),[]),
+    #                      ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[VarDecl(Id("a"),IntType())],VoidType(),Block([]))])])
+    #     expect = "No Entry Point"
+    #     self.assertTrue(TestChecker.test(input,expect,414))
+    
+    # # def test_if_in_if(self):  
+    # #     """ class a {} 
+    # #         class Program {
+    # #             func @main(){
+    # #                 if a < 5 {
+    # #                     var a : int;
+    # #                     if a ==10 {
+    # #                         var a:int;
+    # #                     }
+    # #                     else {
+    # #                         var a:int;
+    # #                     }
+    # #                     const a:int;
+    # #                 }
+    # #             }
+    # #         }
+    # #     """
+    # #     input = Program([ClassDecl(Id('a'),[]),
+    # #                      ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],VoidType(),Block([
+    # #                          If(BinaryOp("<",Id("a"),IntLiteral(5)),Block([
+    # #                              VarDecl(Id("a"),IntType()),
+    # #                              If(BinaryOp("==",Id("a"),IntLiteral(10)),
+    # #                                 Block([VarDecl(Id("a"),IntType())]),None,
+    # #                                 Block([VarDecl(Id("a"),IntType())]),),
+    # #                              ConstDecl(Id("a"),IntType(),None)
+    # #                          ])),
+                             
+    # #                      ]))])])
+    # #     expect = "Redeclared Attribute: a"
+    # #     self.assertTrue(TestChecker.test(input,expect,415))
+        
+    # def test_redeclered_io_class(self):  
+    #     """ class io {} 
+    #         class Program {
+    #             func @main() : int {}
+    #         }
+    #     """
+    #     input = Program([ClassDecl(Id('io'),[]),
+    #                      ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],VoidType(),Block([]))])])
+    #     expect = "Redeclared Class: io"
+    #     self.assertTrue(TestChecker.test(input,expect,416))
+
+    # def test_class_program_papa(self):  
+    #     """ class io {} 
+    #         class io <- Program {
+    #             func @main() : int {}
+    #         }
+    #     """
+    #     input = Program([ClassDecl(Id('io'),[]),
+    #                      ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],VoidType(),Block([]))],Id("io"))])
+    #     expect = "Redeclared Class: io"
+    #     self.assertTrue(TestChecker.test(input,expect,417))
+        
+    # def test_entry_not_voidtype(self):  
+    #     """ class io <- Program {
+    #             func @main():int {}
+    #         }
+    #     """
+    #     input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],IntType(),Block([]))],Id("io"))])
+    #     expect = "No Entry Point"
+    #     self.assertTrue(TestChecker.test(input,expect,418))
+    
+    # def test_for_in_for_redeclered(self):
+    #     """ class Program {
     #             func @main(){
-    #                 if a < 5 {
-    #                     var a : int;
-    #                     if a ==10 {
-    #                         var a:int;
+    #                 for a := 0; a < 10; a++{
+    #                     const b : int;
+    #                     for a = 0; a < 10; a++{
+    #                         var c: int ;
+    #                         const c:int;
     #                     }
-    #                     else {
-    #                         var a:int;
-    #                     }
-    #                     const a:int;
+    #                     var b:int;
     #                 }
     #             }
     #         }
     #     """
-    #     input = Program([ClassDecl(Id('a'),[]),
-    #                      ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],VoidType(),Block([
-    #                          If(BinaryOp("<",Id("a"),IntLiteral(5)),Block([
-    #                              VarDecl(Id("a"),IntType()),
-    #                              If(BinaryOp("==",Id("a"),IntLiteral(10)),
-    #                                 Block([VarDecl(Id("a"),IntType())]),None,
-    #                                 Block([VarDecl(Id("a"),IntType())]),),
-    #                              ConstDecl(Id("a"),IntType(),None)
-    #                          ])),
-                             
-    #                      ]))])])
-    #     expect = "Redeclared Attribute: a"
-    #     self.assertTrue(TestChecker.test(input,expect,415))
-        
-    def test_redeclered_io_class(self):  
-        """ class io {} 
-            class Program {
-                func @main() : int {}
-            }
-        """
-        input = Program([ClassDecl(Id('io'),[]),
-                         ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],VoidType(),Block([]))])])
-        expect = "Redeclared Class: io"
-        self.assertTrue(TestChecker.test(input,expect,416))
-
-    def test_class_program_papa(self):  
-        """ class io {} 
-            class io <- Program {
-                func @main() : int {}
-            }
-        """
-        input = Program([ClassDecl(Id('io'),[]),
-                         ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],VoidType(),Block([]))],Id("io"))])
-        expect = "Redeclared Class: io"
-        self.assertTrue(TestChecker.test(input,expect,417))
-        
-    def test_entry_not_voidtype(self):  
-        """ class io <- Program {
-                func @main():int {}
-            }
-        """
-        input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],IntType(),Block([]))],Id("io"))])
-        expect = "No Entry Point"
-        self.assertTrue(TestChecker.test(input,expect,418))
-    
-    def test_for_in_for_redeclered(self):
-        """ class Program {
-                func @main(){
-                    for a := 0; a < 10; a++{
-                        const b : int;
-                        for a = 0; a < 10; a++{
-                            var c: int ;
-                            const c:int;
-                        }
-                        var b:int;
-                    }
-                }
-            }
-        """
-        input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],VoidType(),Block([ConstDecl(Id("b"),IntType(),None),For(Assign(Id("a"),IntLiteral(0)),BinaryOp("<",Id("a"),IntLiteral(10)),BinaryOp("+",Id("a"),IntLiteral(1)),
-                                                                                                  Block([For(Assign(Id("a"),IntLiteral(0)),BinaryOp("<",Id("a"),IntLiteral(10)),BinaryOp("+",Id("a"),IntLiteral(1)),
-                                                                                                             Block([VarDecl(Id("c"),IntType()),ConstDecl(Id("c"),FloatType(),None)]))])),
-                                                                                              VarDecl(Id("b"),IntType())
+    #     input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],VoidType(),Block([ConstDecl(Id("b"),IntType(),None),For(Assign(Id("a"),IntLiteral(0)),BinaryOp("<",Id("a"),IntLiteral(10)),BinaryOp("+",Id("a"),IntLiteral(1)),
+    #                                                                                               Block([For(Assign(Id("a"),IntLiteral(0)),BinaryOp("<",Id("a"),IntLiteral(10)),BinaryOp("+",Id("a"),IntLiteral(1)),
+    #                                                                                                          Block([VarDecl(Id("c"),IntType()),ConstDecl(Id("c"),FloatType(),None)]))])),
+    #                                                                                           VarDecl(Id("b"),IntType())
             
-            ]))],Id("io"))])
-        expect = "[]"
-        self.assertTrue(TestChecker.test(input,expect,419))
+    #         ]))],Id("io"))])
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,419))
     
-    def test_constructor(self):  
-        """ class  Program {
-                var a : int;
-                func constructor() {}
-            }
-        """
-        input = Program([ClassDecl(Id('Program'),[VarDecl(Id("a"),IntType()),
-                                                  MethodDecl(Id("constructor"),[],VoidType(),Block([]))])])
-        expect = "No Entry Point"
-        self.assertTrue(TestChecker.test(input,expect,420))
+    # def test_constructor(self):  
+    #     """ class  Program {
+    #             var a : int;
+    #             func constructor() {}
+    #         }
+    #     """
+    #     input = Program([ClassDecl(Id('Program'),[VarDecl(Id("a"),IntType()),
+    #                                               MethodDecl(Id("constructor"),[],VoidType(),Block([]))])])
+    #     expect = "No Entry Point"
+    #     self.assertTrue(TestChecker.test(input,expect,420))
         
-    def test_constructor_differ_param(self):  
-        """ class  Program {
-                var a : int;
-                func constructor() {}
-                func constructor(a:int) {}
-                var b : int;
-            }
-        """
-        input = Program([ClassDecl(Id('Program'),[VarDecl(Id("a"),IntType()),
-                                                  MethodDecl(Id("constructor"),[],VoidType(),Block([])),
-                                                  MethodDecl(Id("constructor"),[VarDecl(Id("a"),IntType())],VoidType(),Block([])),
-                                                  VarDecl(Id("b"),IntType())])])
-        expect = "No Entry Point"
-        self.assertTrue(TestChecker.test(input,expect,421))
+    # def test_constructor_differ_param(self):  
+    #     """ class  Program {
+    #             var a : int;
+    #             func constructor() {}
+    #             func constructor(a:int) {}
+    #             var b : int;
+    #         }
+    #     """
+    #     input = Program([ClassDecl(Id('Program'),[VarDecl(Id("a"),IntType()),
+    #                                               MethodDecl(Id("constructor"),[],VoidType(),Block([])),
+    #                                               MethodDecl(Id("constructor"),[VarDecl(Id("a"),IntType())],VoidType(),Block([])),
+    #                                               VarDecl(Id("b"),IntType())])])
+    #     expect = "No Entry Point"
+    #     self.assertTrue(TestChecker.test(input,expect,421))
         
-    def test_constructor_same_param(self):  
-        """ class  Program {
-                var a : int;
-                func constructor(a:int) {}
-                func constructor(a:int) {}
-            }
-        """
-        input = Program([ClassDecl(Id('Program'),[VarDecl(Id("a"),IntType()),
-                                                  MethodDecl(Id("constructor"),[VarDecl(Id("a"),IntType())],VoidType(),Block([])),
-                                                  MethodDecl(Id("constructor"),[VarDecl(Id("a"),IntType())],VoidType(),Block([]))])])
-        expect = "No Entry Point"
-        self.assertTrue(TestChecker.test(input,expect,422))
+    # def test_constructor_same_param(self):  
+    #     """ class  Program {
+    #             var a : int;
+    #             func constructor(a:int) {}
+    #             func constructor(a:int) {}
+    #         }
+    #     """
+    #     input = Program([ClassDecl(Id('Program'),[VarDecl(Id("a"),IntType()),
+    #                                               MethodDecl(Id("constructor"),[VarDecl(Id("a"),IntType())],VoidType(),Block([])),
+    #                                               MethodDecl(Id("constructor"),[VarDecl(Id("a"),IntType())],VoidType(),Block([]))])])
+    #     expect = "No Entry Point"
+    #     self.assertTrue(TestChecker.test(input,expect,422))
  
-    def test_chain_inheritance_class_dup(self):
-        """
-        class a{
-            var s:string;
-            func constructor(b:int){}
-        }
-        class a <- b {
-            var a:a;
-            func temp():int{}
-            func constructor(a:int){}
-            func constructor(t,w:string){}
-        }
-        class b <-Program{
-            var t:int;
-            func @main() {}
-        }
-        class c <- a{}
-        """
-        input = Program([ClassDecl(Id("a"),[VarDecl(Id("s"),StringType()),
-                                            MethodDecl(Id("constructor"),[VarDecl(Id("b"),IntType())],VoidType(),Block([]))]),
-                         ClassDecl(Id("b"),[VarDecl(Id("a"),ClassType(Id("a"))),
-                                            MethodDecl(Id("temp"),[],IntType(),Block([])),
-                                            MethodDecl(Id("constructor"),[VarDecl(Id("a"),IntType())],VoidType(),Block([])),
-                                            MethodDecl(Id("constructor"),[VarDecl(Id("t"),StringType()),VarDecl(Id("w"),StringType())],VoidType(),Block([]))],Id("a")),
-                         ClassDecl(Id("Program"),[VarDecl(Id("t"),IntType()),
-                                                  MethodDecl(Id("@main"),[],VoidType(),Block([]))],Id("b")),
-                         ClassDecl(Id("a"),[],Id("c"))])
-        expect = "Redeclared Class: a"
-        self.assertTrue(TestChecker.test(input,expect,423)) 
+    # def test_chain_inheritance_class_dup(self):
+    #     """
+    #     class a{
+    #         var s:string;
+    #         func constructor(b:int){}
+    #     }
+    #     class a <- b {
+    #         var a:a;
+    #         func temp():int{}
+    #         func constructor(a:int){}
+    #         func constructor(t,w:string){}
+    #     }
+    #     class b <-Program{
+    #         var t:int;
+    #         func @main() {}
+    #     }
+    #     class c <- a{}
+    #     """
+    #     input = Program([ClassDecl(Id("a"),[VarDecl(Id("s"),StringType()),
+    #                                         MethodDecl(Id("constructor"),[VarDecl(Id("b"),IntType())],VoidType(),Block([]))]),
+    #                      ClassDecl(Id("b"),[VarDecl(Id("a"),ClassType(Id("a"))),
+    #                                         MethodDecl(Id("temp"),[],IntType(),Block([])),
+    #                                         MethodDecl(Id("constructor"),[VarDecl(Id("a"),IntType())],VoidType(),Block([])),
+    #                                         MethodDecl(Id("constructor"),[VarDecl(Id("t"),StringType()),VarDecl(Id("w"),StringType())],VoidType(),Block([]))],Id("a")),
+    #                      ClassDecl(Id("Program"),[VarDecl(Id("t"),IntType()),
+    #                                               MethodDecl(Id("@main"),[],VoidType(),Block([]))],Id("b")),
+    #                      ClassDecl(Id("a"),[],Id("c"))])
+    #     expect = "Redeclared Class: a"
+    #     self.assertTrue(TestChecker.test(input,expect,423)) 
         
-    def test_constructor_same_param(self):  
-        """ class  Program {
-                var a : int;
-                func constructor(a:int) {}
-                func constructor(a:int) {}
+    # def test_constructor_same_param(self):  
+    #     """ class  Program {
+    #             var a : int;
+    #             func constructor(a:int) {}
+    #             func constructor(a:int) {}
+    #         }
+    #     """
+    #     input = Program([ClassDecl(Id('Program'),[VarDecl(Id("a"),IntType()),
+    #                                               MethodDecl(Id("constructor"),[VarDecl(Id("a"),IntType())],VoidType(),Block([])),
+    #                                               MethodDecl(Id("constructor"),[VarDecl(Id("a"),IntType())],VoidType(),Block([]))])])
+    #     expect = "No Entry Point"
+    #     self.assertTrue(TestChecker.test(input,expect,424))
+        
+    # def test_undeclared_classname(self):  
+    #     """ class  a <- Program {
+    #             func @main() {}
+    #         }
+    #     """
+    #     input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],VoidType(),Block([]))],Id("a"))])
+    #     expect = "Undeclared Class: a"
+    #     self.assertTrue(TestChecker.test(input,expect,425))
+
+    # def test_oop_class(self):  
+    #     """ 
+    #     class a{}
+    #     class  a <- Program {
+    #             func @main() {}
+    #         }
+    #     """
+    #     input = Program([
+    #         ClassDecl(Id("a"),[]),
+    #         ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],VoidType(),Block([]))],Id("a"))])
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,426))
+        
+    # def test_oop_multiple_class_oroboros(self):  
+    #     """ 
+    #     class a <- c {
+    #         var b :int;
+    #         var a:int; 
+    #     }
+    #     class program<- a{
+    #         const a:int 
+    #     }
+    #     class  c <- Program {
+    #             func @main() {}
+    #         }
+    #     """
+    #     input = Program([
+    #         ClassDecl(Id("c"),[VarDecl(Id("a"),IntType())],Id("a")),
+    #         ClassDecl(Id("a"),[ConstDecl(Id("a"),IntType(),None)],Id("Program")),
+    #         ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],VoidType(),Block([]))],Id("c"))])
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,427))
+
+    
+    # def test_redeclared_param(self):
+    #     """Class Program {
+    #         func @main (a:int, a:float){}
+    #         }"""
+    #     input = Program([ClassDecl(Id('Program'),[MethodDecl(Id("@main"),
+    #                                                          [VarDecl(Id("a"),IntType()),VarDecl(Id("a"),FloatType())],
+    #                                                          VoidType(),
+    #                                                          Block([]))])])
+    #     expect = "Redeclared Parameter: a"
+    #     self.assertTrue(TestChecker.test(input,expect,428))    
+    
+    # def test_oop_undeclared_expr_sametype_in_another_class(self): #
+    #     """ 
+    #     class a <- c {
+    #         var b :int = a+1;
+    #         var a:int; 
+    #     }
+    #     class program<- a{
+    #         const a:int 
+    #     }
+    #     class  c <- Program {
+    #             func @main() {}
+    #         }
+    #     """
+    #     input = Program([
+    #         ClassDecl(Id("c"),[VarDecl(Id("a"),IntType())],Id("a")),
+    #         ClassDecl(Id("a"),[ConstDecl(Id("a"),IntType(),None)],Id("Program")),
+    #         ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],VoidType(),Block([]))],Id("c"))])
+    #     expect = "[]"
+    #     self.assertTrue(TestChecker.test(input,expect,429))
+
+    def test_undeclared_expr_in_class_scope(self):  
+        """ 
+        class a <- c {
+            var b :int;
+            var a:int; 
+        }
+        class program<- a{
+            const a:int 
+        }
+        class  c <- Program {
+                func @main() {}
             }
         """
-        input = Program([ClassDecl(Id('Program'),[VarDecl(Id("a"),IntType()),
-                                                  MethodDecl(Id("constructor"),[VarDecl(Id("a"),IntType())],VoidType(),Block([])),
-                                                  MethodDecl(Id("constructor"),[VarDecl(Id("a"),IntType())],VoidType(),Block([]))])])
-        expect = "No Entry Point"
-        self.assertTrue(TestChecker.test(input,expect,424))
-        
-
-        
+        input = Program([
+            ClassDecl(Id("c"),[VarDecl(Id("a"),IntType())],Id("a")),
+            ClassDecl(Id("a"),[ConstDecl(Id("a"),IntType(),None)],Id("Program")),
+            ClassDecl(Id('Program'),[MethodDecl(Id("@main"),[],VoidType(),Block([]))],Id("c"))])
+        expect = "[]"
+        self.assertTrue(TestChecker.test(input,expect,427))
 ################################################################
 from abc import ABC, abstractmethod, ABCMeta
 #from Visitor import Visito

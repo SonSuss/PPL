@@ -10,24 +10,6 @@ from functools import reduce
 import copy
 
 
-# class Member:
-#     def __init__(self,n,t,isMu=False):
-#         self.name = n
-#         self.typ = t
-#         self.isMu = isMu
-#     def __str__(self):
-#         return "Member("+self.name+","+str(self.typ)+","+str(self.kind)+","+str(self.isMu)+")"
-
-
-
-# class BKClass:
-#     def __init__(self,n,p,m):
-#         self.name = n
-#         self.parent = p
-#         self.member = m
-#     def __str__(self):
-#         return "Class("+self.name+","+(self.parent if type(self.parent) == str else "None" if self.parent is None else self.parent.name)+",["+",".join(str(i) for i in self.member) +"])"
-
 class Member:
     def __init__(self,n,t,isMu=False):
         self.name = n
@@ -46,40 +28,6 @@ class BKClass:
     def __str__(self):
         return "Class("+self.name+","+(self.parent if type(self.parent) == str else "None" if self.parent is None else self.parent.name)+",["+",".join(str(i) for i in self.member) +"])"
 
-# class StaticChecker(BaseVisitor,Utils):
-#     inttype = IntType()
-#     floattype = FloatType()
-#     voidtype = VoidType()
-#     booltype = BoolType()
-#     stringtype = StringType() 
-#     def __init__(self,ast):
-#         self.ast = ast
-#         self.io = [BKClass("io",None,[
-#                             Member("@readInt",MType([],StaticChecker.inttype),False),
-#                             Member("@writeIntLn",MType([StaticChecker.inttype],StaticChecker.voidtype),False),
-#                             ])]
-#     def check(self):
-#         self.visit(self.ast,self.io)
-#         return "successful"
-
-#     def visitProgram(self,ast, c):
-#         env = reduce(lambda a,e: self.visit(e,a), ast.decl,c)
-        
-#     def visitClassDecl(self, ast, c):
-#         if ast.classname.name in map(lambda x: x.name,c):
-#             raise Redeclared(Class(),ast.classname.name)
-#         mem = reduce(lambda a,e: self.visit(e,a) ,ast.memlist,[])
-#         return [BKClass(ast.classname.name,ast.parentname,mem)]+c
-
-#     def visitAttributeDecl(self,ast,c):
-#         field = self.visit(ast.decl,c) 
-#         return [field]+c
-
-#     def visitVarDecl(self, ast, c):
-#         if ast.variable.name in map(lambda x: x.name,c):
-#             raise Redeclared(Attribute(),ast.variable.name)
-#         return Member(ast.variable.name,ast.varType,True)
-
 
 class GetEvm(BaseVisitor,Utils):
     def __init__(self):
@@ -92,35 +40,40 @@ class GetEvm(BaseVisitor,Utils):
     def visitClassDecl(self, ast, c):
         if ast.classname.name in map(lambda x: x.name,c):
             raise Redeclared(Class(),ast.classname.name)
-        mem = reduce(lambda a,e: self.visit(e,a) ,ast.memlist,[])
+        mem = reduce(lambda a,e: self.visit(e,a) + a ,ast.memlist,[])
         return [BKClass(ast.classname.name,ast.parentname,mem)]+c
     
     def visitMethodDecl(self,ast,c):
         if ast.name.name in map(lambda x: x.name,c):
             if not ast.name.name =="constructor":
-                # partype = reduce(lambda a,e : [e.varType] + a, ast.param ,[])
-                # if next(filter(lambda x: x.name =="constructor" and x.typ.partype == partype, c),None):
-                #     raise Redeclared(Method(),ast.name.name)
                 raise Redeclared(Method(),ast.name.name)
-        partype = reduce(lambda a,e : [e.varType] + a, ast.param ,[])
+        # partype = reduce(lambda a,e : [e.varType] + a , ast.param ,[])
+        partype = []
+        parlst=[]
+        for e in ast.param:
+            if e.variable.name in parlst:
+                raise Redeclared(Parameter(),e.variable.name)
+            else: 
+                parlst += e.variable.name
+                partype = [e.varType] + partype
         return [Member(ast.name.name,MType(partype,ast.returnType))] + c
     
-    # def visitFor(self,ast,c):
-    #     mem = reduce(lambda a,e : self.visit(e,a) + a ,ast.loop.stmt, [])
-    #     return []
+    def visitFor(self,ast,c): 
+        mem = reduce(lambda a,e : self.visit(e,a) + a ,ast.loop.stmt, [])
+        return [mem]
     
-    # def visitIf(self,ast,c):
-    #     thenblock = []
-    #     elseblock = []
-    #     if ast.preStmt :
-    #         thenblock =reduce(lambda a,e : self.visit(e,a) + a ,ast.preStmt.stmt, [])
-    #         if ast.elseStmt:
-    #             elseblock = reduce(lambda a,e : self.visit(e,a) + a ,ast.elseStmt.stmt, [])
-    #     else:
-    #         thenblock =reduce(lambda a,e : self.visit(e,a) + a ,ast.thenStmt.stmt, [])
-    #         if ast.elseStmt:
-    #             elseblock = reduce(lambda a,e : self.visit(e,a) + a ,ast.elseStmt.stmt, [])
-    #     return []
+    def visitIf(self,ast,c):
+        thenblock = []
+        elseblock = []
+        if ast.preStmt :
+            thenblock =reduce(lambda a,e : self.visit(e,a) + a ,ast.preStmt.stmt, [])
+            if ast.elseStmt:
+                elseblock = reduce(lambda a,e : self.visit(e,a) + a ,ast.elseStmt.stmt, [])
+        else:
+            thenblock =reduce(lambda a,e : self.visit(e,a) + a ,ast.thenStmt.stmt, [])
+            if ast.elseStmt:
+                elseblock = reduce(lambda a,e : self.visit(e,a) + a ,ast.elseStmt.stmt, [])
+        return [thenblock,elseblock]
 
     
     def visitAttributeDecl(self,ast,c):
@@ -140,6 +93,7 @@ class GetEvm(BaseVisitor,Utils):
     
 
 ################################################################
+
 class StaticChecker(BaseVisitor,Utils):
     inttype = IntType()
     floattype = FloatType()
@@ -157,31 +111,63 @@ class StaticChecker(BaseVisitor,Utils):
         return ""
 
     def visitProgram(self,ast, c):
-        evm=GetEvm().visit(ast,c)
-        entryclass = next(filter(lambda entryclass: entryclass.name == "Program",evm),None)
+        c=GetEvm().visit(ast,c)
+        entryclass = next(filter(lambda entryclass: entryclass.name == "Program",c),None)
         if entryclass:
-            # entryfunc= next(filter(lambda entryfunc: entryfunc.name == "@main",entryclass.member),None)
             if not next(filter(lambda entryfunc: entryfunc.name == "@main" and isinstance(entryfunc.typ,MType) and len(entryfunc.typ.partype)== 0 and str(entryfunc.typ.rettype)=="VoidType",entryclass.member),None):
                 raise NoEntryPoint()
         else: raise NoEntryPoint()
+        for decl in ast.decl:self.visit(decl,c) 
     
     def visitClassDecl(self, ast, c):
-        pass
+        selfscopename = next(filter(lambda x: x.name == ast.classname.name ,c),None)
+        selfscope = []
+        if selfscopename.parent:
+            parent = selfscopename.parent
+            oroboros=[selfscopename.name]
+            while True:
+                name = parent.name
+                if not name in map(lambda x: x.name,c):
+                    raise Undeclared(Class(),name)
+                if name in oroboros:
+                    break
+                oroboros += [name]
+                scope = next(filter(lambda x: x.name == name ,c),None)
+                if not scope:
+                    raise Undeclared(Class(),)
+                selfscope = selfscope+ [scope.member]
+                if scope.parent:
+                    parent = scope.parent
+                else: 
+                    break
+        #     print(oroboros)
+        print(selfscope[0][0])
+        # emv = [selfscope] + [c]
+        istScope=[]
+        for mem in ast.memlist:
+            selfscope = [istScope] + [selfscope]
+            istScope = self.visit(mem,selfscope)
+        
+        
+            
 
     def visitMemDecl(self,ast,c):
-        pass
+        self.visit(ast,c)
     
     def visitMethodDecl(self,ast,c):
         pass
     
-    # def visitAttributeDecl(self,ast,c):
-    #     return self.visit(ast,c)
+    def visitAttributeDecl(self,ast,c):
+        self.visit(ast,c)
     
-    # def visitVarDecl(self, ast, c):
-    #     return self.visit(ast,c)
+    def visitVarDecl(self, ast, c):
+        istScope=c[0]
+        classScope=c[1]
+        if ast.varInit:
+            lhstyp = self.visit(ast.varInit,c)
     
-    # def visitConstDecl(self,ast,c):
-    #     return self.visit(ast,c)
+    def visitConstDecl(self,ast,c):
+        pass
     
     # def visitStmt(self,ast,c):
     #     return self.visit(ast,c)
@@ -216,8 +202,11 @@ class StaticChecker(BaseVisitor,Utils):
     # def visitExpr(self,ast,c):
     #     return self.visit(ast.Expr,c)
     
-    # def visitId(self,ast,c):
-    #     return self.visit(ast.Id,c)
+    def visitId(self,ast,c):
+        name= ast.name
+        
+        
+    
     
     # def visitArrayCell(self,ast,c):
     #     return self.visit(ast.ArrayCell,c)
