@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(C),[ConstDecl(Id(a),IntType,IntLit(1)),MethodDecl(Id(@a),[Param(Id(a),IntType)],IntType,Block([ConstDecl(Id(b),StringType,BinaryOp(^,StringLit(Ayo),StringLit(whatsup))),AssignStmt(Id(b),StringLit())]))]),ClassDecl(Id(Program),Id(C),[MethodDecl(Id(@main),[],VoidType,Block([]))])])

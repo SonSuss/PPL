@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(c),Id(a),[VarDecl(Id(a),IntType)]),ClassDecl(Id(a),Id(Program),[ConstDecl(Id(a),IntType,None)]),ClassDecl(Id(Program),Id(c),[MethodDecl(Id(@main),[],VoidType,Block([]))])])
+Program([ClassDecl(Id(c),Id(a),[VarDecl(Id(b),IntType),VarDecl(Id(a),IntType)]),ClassDecl(Id(a),Id(Program),[ConstDecl(Id(a),IntType,IntLit(1))]),ClassDecl(Id(Program),Id(c),[MethodDecl(Id(@main),[],VoidType,Block([]))])])

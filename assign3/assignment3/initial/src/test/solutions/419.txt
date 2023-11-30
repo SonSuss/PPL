@@ -1,1 +1,1 @@
-[]
+Type Mismatch In Declaration: ConstDecl(Id(c),FloatType,None)

@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(C),[ConstDecl(Id(a),IntType,IntLit(1)),VarDecl(Id(c),ArrayType(5,IntType)),MethodDecl(Id(@a),[Param(Id(a),IntType)],IntType,Block([VarDecl(Id(b),ArrayType(5,IntType)),AssignStmt(FieldAccess(Self(),Id(a)),Id(a))]))]),ClassDecl(Id(Program),Id(C),[MethodDecl(Id(@main),[],VoidType,Block([]))])])
