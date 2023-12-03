@@ -114,8 +114,8 @@ class StaticChecker(BaseVisitor,Utils):
                             Member("@writeFloat",MType([StaticChecker.floattype],StaticChecker.voidtype),True),
                             Member("@readBool",MType([],StaticChecker.booltype),True),
                             Member("@writeBool",MType([StaticChecker.booltype],StaticChecker.booltype),True),
-                            Member("@readString",MType([],StaticChecker.stringtype),True),
-                            Member("@writeStirng",MType([StaticChecker.stringtype],StaticChecker.voidtype),True)
+                            Member("@readStr",MType([],StaticChecker.stringtype),True),
+                            Member("@writeStr",MType([StaticChecker.stringtype],StaticChecker.voidtype),True)
                             ])]
     def check(self):
         self.visit(self.ast,self.io)
@@ -250,9 +250,9 @@ class StaticChecker(BaseVisitor,Utils):
         if ast.preStmt:
             self.visit(ast.preStmt,checkScopelst)
             preScope = reduce(lambda a ,e : GetEvm().visit(e,a),ast.preStmt.stmt,[]) #make expr can find preScope
-            checkScopelst = [preScope] + c
-        # if str(self.visit(ast.expr,checkScopelst)) != str(StaticChecker.booltype):
-        #     raise TypeMismatchInStatement(ast)
+            checkScopelst = [[preScope]] + c
+        if str(self.visit(ast.expr,checkScopelst)) != str(StaticChecker.booltype):
+            raise TypeMismatchInStatement(ast)
         self.visit(ast.thenStmt,checkScopelst)
         if ast.elseStmt :
             self.visit(ast.elseStmt,checkScopelst)
@@ -260,11 +260,13 @@ class StaticChecker(BaseVisitor,Utils):
     
     def visitFor(self,ast,c):
         forBlock = [[Member("for",StaticChecker.inttype)]] + c
-        initMember = Member(ast.initStmt.lhs.name,self.visit(ast.initStmt.exp,forBlock),False,True)
-        # only works when initStmt lhs is a Id
-        forBlock[0].insert(0,initMember)
-        # if str(self.visit(ast.expr,forBlock)) != str(StaticChecker.booltype):
-        #     raise TypeMismatchInStatement(ast)
+        if str(ast.initStmt.lhs)[:2]== "Id":
+            initMember = Member(ast.initStmt.lhs.name,self.visit(ast.initStmt.exp,forBlock),False,True)
+            forBlock[0].insert(0,initMember)
+        else: 
+            self.visit(ast.initStmt,forBlock)
+        if str(self.visit(ast.expr,forBlock)) != str(StaticChecker.booltype):
+            raise TypeMismatchInStatement(ast)
         self.visit(ast.loop,forBlock)
         self.visit(ast.postStmt,forBlock)
         return c
@@ -284,7 +286,6 @@ class StaticChecker(BaseVisitor,Utils):
     
     def visitReturn(self,ast,c):
         funcret = next(filter(lambda x : x.name == 'func', c[-5]),None)
-        print(funcret)
         if ast.expr:
             exprrt = self.visit(ast.expr,c)
             if str(funcret.typ) != str(exprrt):
@@ -294,8 +295,58 @@ class StaticChecker(BaseVisitor,Utils):
                     raise TypeMismatchInStatement(ast)
         return c
     
-    # def visitCall(self,ast,c):
-    #     return self.visit(ast.Call,c)
+    def visitCallStmt(self,ast,c):
+        if ast.obj:
+            obj = self.visit(ast.obj,c)
+            objstr = str(obj)[:4]
+            memberaccess = None
+            if objstr == 'Clas':
+                classlist = c[-1]
+                classaccess = next(filter(lambda x: x.name == obj.classname.name , classlist),None)
+                memberaccess =  next(filter(lambda x: x.name == ast.method.name , classaccess.member),None)
+                if not memberaccess:
+                    raise Undeclared(Method(),ast.method.name)
+                if not memberaccess.isFunc:
+                    raise TypeMismatchInStatement(ast)
+                if str(memberaccess.typ.rettype) != "VoidType":
+                    raise TypeMismatchInStatement(ast)
+                if len(ast.param) !=  len(memberaccess.typ.partype):
+                    raise TypeMismatchInStatement(ast)
+                for i in range(0,len(ast.param)):
+                    if str(memberaccess.typ.partype[i]) != str(self.visit(ast.param[i],c)):
+                        raise TypeMismatchInStatement(ast)
+                return c
+            if objstr == 'Self':
+                ooplist=c[-3]
+                memberaccess =  next(filter(lambda x: x.name == ast.method.name , ooplist),None)
+                if not memberaccess:
+                    raise Undeclared(Method(),ast.method.name)
+                if not memberaccess.isFunc:
+                    raise TypeMismatchInStatement(ast)
+                if str(memberaccess.typ.rettype) != "VoidType":
+                    raise TypeMismatchInStatement(ast)
+                if len(ast.param) !=  len(memberaccess.typ.partype):
+                    raise TypeMismatchInStatement(ast)
+                for i in range(0,len(ast.param)):
+                    if str(memberaccess.typ.partype[i]) != str(self.visit(ast.param[i],c)):
+                        raise TypeMismatchInStatement(ast)
+                return c
+            raise TypeMismatchInStatement(ast)
+        else:
+            globallist=c[-2]
+            memberaccess =  next(filter(lambda x: x.name == ast.fieldname.name , globallist),None)
+            if not memberaccess:
+                raise Undeclared(Method(),ast.fieldname.name)
+            if not memberaccess.isFunc:
+                raise TypeMismatchInStatement(ast)
+            if str(memberaccess.typ.rettype) != "VoidType":
+                raise TypeMismatchInStatement(ast)
+            if len(ast.param) !=  len(memberaccess.typ.partype):
+                raise TypeMismatchInStatement(ast)
+            for i in range(0,len(ast.param)):
+                if str(memberaccess.typ.partype[i]) != str(self.visit(ast.param[i],c)):
+                    raise TypeMismatchInStatement(ast)
+            return c
     
     def visitExpr(self,ast,c):
         return self.visit(ast.Expr,c)
@@ -365,11 +416,11 @@ class StaticChecker(BaseVisitor,Utils):
         arithopI = ['\\','%']
         arithopF = ['/']        
         if ast.op in compareop1 and (comparedtype == StaticChecker.inttype or comparedtype == StaticChecker.booltype) :
-            return comparedtype
+            return StaticChecker.booltype
         if ast.op in compareop2 and (comparedtype == StaticChecker.inttype or comparedtype == StaticChecker.floattype) :
-            return comparedtype
+            return StaticChecker.booltype
         if ast.op in logicalop and comparedtype == StaticChecker.booltype:
-            return comparedtype
+            return StaticChecker.booltype
         if ast.op in stringop and comparedtype == StaticChecker.stringtype:
             return comparedtype
         if ast.op in arithopIF and (comparedtype == StaticChecker.inttype or comparedtype == StaticChecker.floattype) :
